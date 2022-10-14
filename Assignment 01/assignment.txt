@@ -33,7 +33,9 @@ Editor: Hier kann eine feste Abfolge von Operatoren und Operand verknüft werden
 
 REPL: Hier kann direkt mit dem obersten Element des Stacks interargiert werden. 
         Alternative zu REPL: Weil Postfix interpretiert ist kann man Zeilen einfach zeitversetzt einwerfen, alles wird nacheinander abgearbeitet, nichts muss compiled werden. Ist wie die Python Shell 
+
 IN: Hier können Objekte eingegeben werden, wenn diese mit dem read Operator abgefragt werden.
+z.B.: Editor: readint print IN:7 OUT: 7
 
 OUT: Hier werden Objekte ausgegeben, welche durch den print Operator ausgegeben werden.
 z.B.: Editor: 5 2 + print OUT: 7
@@ -42,6 +44,19 @@ Stack Dicts: Jeder neue Eintrag wird auf den Stack gelegt. Es kann das oberste O
              Im Dictionarie werden bestimmten Variablen Objekte zugeordnet Diese können dann jederzeit abgerufen oder ersetzt werden.
 
 Doc: In der Documentation sind alle Operatoren und deren Anwendung beschrieben. Es ist wie eine Bedinungsanleitung für die einzelnen Bauteile des Codes.
+z.B. Doc: for
+dann spuckt mir das aus:
+lower :Int, upper :Int, body :ExeArr
+Execute the given executable array for every even number between lower (inclusive) and upper (exclusive). Before every iteration, the current value is pushed on the stack.
+
+Params:
+lower	:Int	Start of the range (inclusive)
+upper	:Int	End of the range (exclusive)
+body	:ExeArr	Executable array to run for number in the range
+Returns: nothing
+Example:
+1 10 { println } for # prints the numbers from 1 to 9
+
 
 b)  Die erste Schaltfläche führt alle Anweisungen aus dem Editor in Reihnfolge aus.
     Die zweite Schaltfläche pausiert das Programm in dem aktuellen Schritt. 
@@ -70,6 +85,7 @@ Aufgabe 3:  a) Es wird erst 4 dann 8 auf den Stack gelegt und dann 4*8=32 gerech
                (4) 3 4 - 1 2 - - bedeutet (3-4)-(1-2)=0
                (5) 4 3 2 1 - - - bedeutet ((1-2)-3)-4=2
                Damit sind die Ausdrücke (2) und (5) hinsichtlich des Ergebnisses äquivalent.
+               Es verhält sich hier nicht genau wie bei der Addition, da für die Subtraktion das Kommutativgesetz nicht gilt
             
             f) Zuerst wird 8 auf den Stack gelegt. Danach wird 2 auf den Stack gelegt. Dann wird 8+2=10 gerechnet. 
                Dann wird -1 auf den Stack gelegt und dann wird überprüft ob 10=-1. Das Ergebnis davon ist false und das bleibt dann auf dem Stack.
