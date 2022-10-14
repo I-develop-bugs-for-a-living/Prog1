@@ -30,12 +30,14 @@ bei.
 
 Editor: Hier kann eine feste Abfolge von Operatoren und Operand verknüft werden. Diese werden dann beim Ausführen des Code der Reihnfolge nach angewendet. 
         Es kann sowohl mit dem Stack als auch mit dem Dictionarie interargiert werden. Zudem können Objekte im Input angefordert werden und im Output ausgegeben werden.
+        Editor: 1 2 3 6 + + + Stack: 12
+        Editor: 4 x! Dicts: x   4
 
-REPL: Hier kann direkt mit dem obersten Element des Stacks interargiert werden. 
-        Alternative zu REPL: Weil Postfix interpretiert ist kann man Zeilen einfach zeitversetzt einwerfen, alles wird nacheinander abgearbeitet, nichts muss compiled werden. Ist wie die Python Shell 
+REPL: Da PostFix Zeile für Zeile interpretiert wird, kann mit dem REPL, während der Code ausgeführt wird, einzelnene Operationen einschieben.
+
 
 IN: Hier können Objekte eingegeben werden, wenn diese mit dem read Operator abgefragt werden.
-z.B.: Editor: readint print IN:7 OUT: 7
+z.B.: Editor: readint print IN: 7 OUT: 7
 
 OUT: Hier werden Objekte ausgegeben, welche durch den print Operator ausgegeben werden.
 z.B.: Editor: 5 2 + print OUT: 7
@@ -61,7 +63,7 @@ Example:
 b)  Die erste Schaltfläche führt alle Anweisungen aus dem Editor in Reihnfolge aus.
     Die zweite Schaltfläche pausiert das Programm in dem aktuellen Schritt. 
     Die dritte Schaltfläche führt die Anweisungen aus dem Editor Schritt für Schritt aus. 
-    Die vierte Schaltfläche stoppt das Programm und geht wieder zum ersten 
+    Die vierte Schaltfläche stoppt das Programm und geht wieder zum Start.
 
 Aufgabe 3:  a) Es wird erst 4 dann 8 auf den Stack gelegt und dann 4*8=32 gerechnet und die 32 danach auf den Stack gelegt.
             
