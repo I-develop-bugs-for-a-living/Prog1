@@ -17,7 +17,7 @@ Es macht kein Sinn Parameter zu übergeben die immer gleich sind.
 c) Was war Ihnen beim Lesen der Kapitel 1 und 2 unklar? Wenn nichts unklar war, welcher Aspekt
 war für Sie am interessantesten?
 
-Ich wusste nicht das man in PostFix auf Funktionen definieren kann. Das erleichtert im weiteren Arbeiten vieles.
+Ich wusste nicht das man in PostFix auf Funktionen definieren kann. Das erleichtert im weiteren Arbeiten vieles. 
 
 
 Aufgabe 2:
