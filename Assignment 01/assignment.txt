@@ -124,3 +124,5 @@ Aufgabe 4: a) read-int dup 100 = {"Match" print} {100 > {"Too High" print} {"Too
     "Inputed Number:" print test print " Result:" print result println
 } for
 """
+
+PostFix Code ist auch nochmal seperat in einer einzelnen Datei:
