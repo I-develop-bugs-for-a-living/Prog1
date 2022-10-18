@@ -17,7 +17,7 @@ Es macht kein Sinn Parameter zu übergeben die immer gleich sind.
 c) Was war Ihnen beim Lesen der Kapitel 1 und 2 unklar? Wenn nichts unklar war, welcher Aspekt
 war für Sie am interessantesten?
 
-Ich wusste nicht das man in PostFix auf Funktionen definieren kann. Das erleichtert im weiteren Arbeiten vieles. 
+Ich wusste nicht das man in PostFix auch Funktionen definieren kann. Das erleichtert im weiteren Arbeiten vieles.
 
 
 Aufgabe 2:
@@ -34,16 +34,20 @@ Editor: Hier kann eine feste Abfolge von Operatoren und Operand verknüft werden
         Editor: 4 x! Dicts: x   4
 
 REPL: Da PostFix Zeile für Zeile interpretiert wird, kann mit dem REPL, während der Code ausgeführt wird, einzelnene Operationen einschieben.
-
+z.B. REPL: 4 4 + 
+STACK: 8
 
 IN: Hier können Objekte eingegeben werden, wenn diese mit dem read Operator abgefragt werden.
-z.B.: Editor: readint print IN: 7 OUT: 7
+z.B.: Editor: readint print 
+IN: 7 
+OUT: 7
 
 OUT: Hier werden Objekte ausgegeben, welche durch den print Operator ausgegeben werden.
-z.B.: Editor: 5 2 + print OUT: 7
+z.B.: Editor: 5 2 + print +
+OUT: 7
 
 Stack Dicts: Jeder neue Eintrag wird auf den Stack gelegt. Es kann das oberste Objekte vom Stack entfernt/verwendet werden oder ein neustes oberstes Objekte darauf gelegt werden. 
-             Im Dictionarie werden bestimmten Variablen Objekte zugeordnet Diese können dann jederzeit abgerufen oder ersetzt werden.
+             Im Dictionarie werden bestimmten Variablen Objekten zugeordnet. Diese können dann jederzeit abgerufen oder ersetzt werden.
 
 Doc: In der Documentation sind alle Operatoren und deren Anwendung beschrieben. Es ist wie eine Bedinungsanleitung für die einzelnen Bauteile des Codes.
 z.B. Doc: for
@@ -60,10 +64,23 @@ Example:
 1 10 { println } for # prints the numbers from 1 to 9
 
 
+
 b)  Die erste Schaltfläche führt alle Anweisungen aus dem Editor in Reihnfolge aus.
     Die zweite Schaltfläche pausiert das Programm in dem aktuellen Schritt. 
     Die dritte Schaltfläche führt die Anweisungen aus dem Editor Schritt für Schritt aus. 
     Die vierte Schaltfläche stoppt das Programm und geht wieder zum Start.
+
+
+c) "Add conditional Breakpoint"
+    Added einen Breakpoint der an eine Condition geküpft ist (Bei True ist der Breakpoint active)
+
+   "Toggle Breakpoint"
+   Fügt einen Breakpoint hinzu oder entfernt ihn
+   Breakpoint = Pausierpunkt
+
+   "Command Palette"
+   Ruft eine ähnliche Command Pallete zu VSCode auf, mit ShortCuts die die IDE anbietet
+
 
 Aufgabe 3:  a) Es wird erst 4 dann 8 auf den Stack gelegt und dann 4*8=32 gerechnet und die 32 danach auf den Stack gelegt.
             
