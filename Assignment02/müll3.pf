@@ -1,0 +1,14 @@
+# Wenn negativ mach positiv
+# Wenn positiv mach * 2
+f: (i) { 
+    "called f" println
+    i 0 < {
+        i -1 *
+    } {
+        i 2 *
+    } if
+} fun
+-3 f 
+f
+
+

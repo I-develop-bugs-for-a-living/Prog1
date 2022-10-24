@@ -1,0 +1,13 @@
+# Aufgabe 3c
+root: (a :Num -> :Num) {
+    x: 1 ! 
+    {
+        x = 0.5 * (x + a / x )! a x dup * - abs 0.01 <= break if
+    } loop
+} fun
+“Wurzel aus 2: “ print
+2 root println
+“Wurzel aus 4: “ print
+4 root println
+“Wurzel aus 9: “ print
+9 root println

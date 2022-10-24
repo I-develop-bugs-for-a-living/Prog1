@@ -1,0 +1,16 @@
+100 rand-int random-num!
+"" guess!
+false guessed_correct!
+
+game-loop: {
+    "Rate meine Zahl. Meine Zahl liegt zwischen 0 und 99" println
+    {
+        guessed_correct true = breakif
+        read-int guess!
+        guess random-num = {"Richtig! Herzlich Glückwunsch!" println true guessed_correct!} {
+            guess random-num > {"zu groß" println} {"zu klein" println} if
+        } if
+    } loop
+} fun
+
+game-loop
