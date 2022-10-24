@@ -1,0 +1,84 @@
+Autoren Marcelo Pedernera, Jan Buehne 
+
+Aufgabe 1:
+
+a)  Lesen Sie Kapitel 3 (Evaluating Functions Without Side-Effects) und beantworten Sie folgende
+    Frage: Warum können Funktionen mit Seiteneffekt nicht wie Funktionen ohne Seiteneffekte durch
+    algebraische Umformung evaluiert werden? Geben Sie ein Beispiel für eine Funktion, die sich nicht
+    durch algebraische Umformung evaluieren lässt.
+
+
+b)  Lesen Sie Kapitel 4 (Recipe for Enumerations) und beantworten Sie folgende Frage: Welche Vorteile
+    hat die cond-Anweisung gegenüber der if-Anweisung?
+
+
+
+c)  Lesen Sie Kapitel 5 (Recipe for Intervals) und beantworten Sie folgende Frage: Welche Rolle spielen
+    Symbole und Konstanten bei Intervallen?
+
+
+d)  Was war Ihnen beim Lesen der Kapitel 3 bis 5 unklar? Wenn nichts unklar war, welcher Aspekt war
+    für Sie am interessantesten?
+
+
+
+Aufgabe 2:  
+
+a)  Welche Bezeichner verweisen auf Funktionen?
+
+
+b)  Was machen die einzelnen Funktionen? Geben sie an, was (welche Datentypen) die einzelnen Funktionen als Parameter auf dem Stack erwarten, was (welche Datentypen) sie als Ergebnis auf den
+    Stack legen und was sie auf der Standardausgabe ausgeben. Ergänzen Sie in der Funktionssignatur
+    den Typ der Parameter und ggf. den Typ des Rückgabewertes. Beispiel:
+
+
+c)  Ergänzen Sie die Funktionsdefinitionen mit einer aussagekräftigen Parameterbeschreibung("#< ...
+    >#"). Dazu gehören ein Purpose Statement, die Beschreibung der einzelnen Parameter sowie die
+    Beschreibung des Rückgabewertes.
+
+
+d)  Beschreiben Sie in 1-2 Sätzen, was das Programm nachfolgend nach dem Kommentar #Rezept
+    macht.
+
+
+e)  Was ist Ihre Meinung zu dem Code hinter dem Kommentar #Rezept. Sollten Programme so geschrieben sein, sodass der Programmcode annähernd wie natürliche Sprache klingt? Begründen
+    Sie kurz.
+
+
+
+Aufgabe 3:
+
+a)  Für die Lesbarkeit von Quelltext ist die Formatierung sehr wichtig, denn Quelltext wird häufiger
+    gelesen, als geschrieben. Gegeben sei folgender unformatierter Quelltext:
+
+
+b)  Erklären Sie das Verhalten der Funktion f möglichst kurz und prägnant. Welcher Wert liegt nach
+    Ausführung des gegebenen Codes auf dem Stack?
+
+
+c)  Das Heron-Verfahren wurde in der iterativen Variante in PostFix implementiert (siehe: https://de.
+    wikipedia.org/wiki/Heron-Verfahren). Die genügend gute Näherung gilt: Absolutwert(Näherung *
+    Näherung - Zahl) < 0.01. Leider haben sich einige Fehler in die Funktion geschlichen. Formatieren
+    Sie zuerst die Funktion, sodass sie gut lesbar ist. Finden Sie dann die Fehler und korrigieren Sie
+    diese. Beschreiben Sie die Fehler.
+
+
+
+Aufgabe 4:
+
+Implementieren Sie ein Programm zum Zahlenraten in PostFix. Der Computer soll eine Zahl zwischen 0
+und 99 würfeln, die der Spieler in möglichst wenigen Zügen herausfinden soll. Dabei gibt der Computer
+jeweils nur den Hinweis, ob die vom Spieler eingegebene Zahl größer oder kleiner als die gesuchte Zahl
+ist.
+
+a)  Implementieren Sie das Programm zum Zahlenraten wie beschrieben. Achten Sie darauf, dass der
+    Stack nach erfolgreicher Beendigung des Spiels leer ist (ohne die Verwendung von clear).
+
+
+b)  Spielen Sie das Spiel selbst fünf Mal. Notieren Sie jeweils wie viele Züge Sie gebraucht haben
+    um die Zahl zu erraten. Schreiben Sie ebenfalls auf wie viele Züge Sie in Durchschnitt gebraucht
+    haben.
+
+
+c)  Beschreiben Sie eine Strategie um die Zahl zu erraten, mit der möglichst wenige Züge benötigt
+    werden.
