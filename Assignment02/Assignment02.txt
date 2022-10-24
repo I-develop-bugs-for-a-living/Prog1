@@ -7,29 +7,41 @@ a)  Lesen Sie Kapitel 3 (Evaluating Functions Without Side-Effects) und beantwor
     algebraische Umformung evaluiert werden? Geben Sie ein Beispiel für eine Funktion, die sich nicht
     durch algebraische Umformung evaluieren lässt.
 
+    Es gibt manche Funktionen, deren Ergebnis keine Rechnung ist sondern nur ein if Statement. 
+
 
 b)  Lesen Sie Kapitel 4 (Recipe for Enumerations) und beantworten Sie folgende Frage: Welche Vorteile
     hat die cond-Anweisung gegenüber der if-Anweisung?
+
+    Ein cond-Anweisung hat den Vorteil, dass sie mehrere Bedingungen überprüfen kann. Wohingegen eine if-Anweisung nur eine Bedingung überprüft. Ein cond-Anweisung ist also als, wie ein verschachtelte if-Anweisung.
 
 
 
 c)  Lesen Sie Kapitel 5 (Recipe for Intervals) und beantworten Sie folgende Frage: Welche Rolle spielen
     Symbole und Konstanten bei Intervallen?
 
+    Die Intervalle werden als Symbole benannt. Die Konstanten sind die Grenzen der Intervalle.
+
+
 
 d)  Was war Ihnen beim Lesen der Kapitel 3 bis 5 unklar? Wenn nichts unklar war, welcher Aspekt war
     für Sie am interessantesten?
 
+    Welchen Zweck haben Intervalle als Symbole und was machen Symbole genau? 
 
 
 Aufgabe 2:  
 
 a)  Welche Bezeichner verweisen auf Funktionen?
 
+    trennen, vermengen, Ei-zugeben und backen
 
 b)  Was machen die einzelnen Funktionen? Geben sie an, was (welche Datentypen) die einzelnen Funktionen als Parameter auf dem Stack erwarten, was (welche Datentypen) sie als Ergebnis auf den
     Stack legen und was sie auf der Standardausgabe ausgeben. Ergänzen Sie in der Funktionssignatur
-    den Typ der Parameter und ggf. den Typ des Rückgabewertes. Beispiel:
+    den Typ der Parameter und ggf. den Typ des Rückgabewertes. 
+
+    trennen: #erstellt einen Array in dem zwei mal die Eingabe enthalten ist
+    vermengen: #addiert die Zutaten
 
 
 c)  Ergänzen Sie die Funktionsdefinitionen mit einer aussagekräftigen Parameterbeschreibung("#< ...
