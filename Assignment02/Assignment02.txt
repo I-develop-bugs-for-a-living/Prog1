@@ -40,9 +40,17 @@ b)  Was machen die einzelnen Funktionen? Geben sie an, was (welche Datentypen) d
     Stack legen und was sie auf der Standardausgabe ausgeben. Ergänzen Sie in der Funktionssignatur
     den Typ der Parameter und ggf. den Typ des Rückgabewertes. 
 
-    trennen: #nimmt einen Integer und macht daraus einen Array der zwei mal der Zahl besteht.
-    vermengen: #nimmt zwei Integer und addiert diese. Zudem wird "vermengen" und "..." ausgegeben und eine Sekunde gewartet.
-    
+    trennen: #nimmt einen Integer und macht daraus einen Array der auf dem Stack landet. Dieser besteht zwei mal aus der gegebenen Zahl.
+    vermengen: #nimmt zwei Integer und addiert diese und legt einen Integer auf den Stack. Zudem wird "g vermengen" und "..." ausgegeben und eine Sekunde gewartet.
+    Ei-zugeben: #nimmt einen Integer und einen Array. Zuerst wird der nullte Eintrag aus dem Array ausgelesen und der Wert wird in einen String umgewandelt. 
+                Dann wird der String mit dem String "Eigelb hinzufügen" zusammengefügt und dann geprintet.
+                Danach wird die Menge der Eigelber addiert mit der bisherigen Menge des Kuchen. Dafür wird die Menge eines Eigelb auf 10g geschätzt.
+                Danach wird das selbe noch einmal für Eiweiß durchgeführt, jedoch wird hierbei die Menge pro Ei auf 20g geschätzt.
+    backen: #nimmt drei Integer und gibt nichts zurück.
+            Zuerst wird der erste Integer in einen String umgewandelt und dann mit den Strings "vorheizen auf" und "°C" zusammengefügt und geprintet.
+            Danach wird der "vorgeheizt" und "backen" in jeweils eigenen Zeilen geprintet.
+            Dann wird "..." geprintet und der zweite Integer verwendet um eine bestimmte Zeit da zu pausieren.
+            Am Ende wird der dritte Integer in einen String umgewandelt und dann mit dem String "g Kuchen gebacken" und dann geprintet.
 
 
 c)  Ergänzen Sie die Funktionsdefinitionen mit einer aussagekräftigen Parameterbeschreibung("#< ...
@@ -53,10 +61,15 @@ c)  Ergänzen Sie die Funktionsdefinitionen mit einer aussagekräftigen Paramete
 d)  Beschreiben Sie in 1-2 Sätzen, was das Programm nachfolgend nach dem Kommentar #Rezept
     macht.
 
+    Nach dem Kommentar #Rezept werden die einzelnen Funktionen mit den dazugehörigen Variablen aufgerufen und ausgeführt. Dazu wird die Variable vor der Funktion eingefügt.
+
 
 e)  Was ist Ihre Meinung zu dem Code hinter dem Kommentar #Rezept. Sollten Programme so geschrieben sein, sodass der Programmcode annähernd wie natürliche Sprache klingt? Begründen
     Sie kurz.
 
+    Ich bin der Meinung das ist nicht sinnvoll den Code so zu schreiben, da die Namen der Funktionen nichts darüber aussagen, was diese nun tun. 
+    Dadurch muss man die Funktion selbst betrachten um zu verstehen was genau diese tut. 
+    
 
 
 Aufgabe 3:
@@ -92,6 +105,14 @@ b)  Spielen Sie das Spiel selbst fünf Mal. Notieren Sie jeweils wie viele Züge
     um die Zahl zu erraten. Schreiben Sie ebenfalls auf wie viele Züge Sie in Durchschnitt gebraucht
     haben.
 
+    1. Versuch: Benötigte Züge 5
+    2. Versuch: Benötigte Züge 6
+    3. Versuch: Benötigte Züge 8
+    4. Versuch: Benötigte Züge 7
+    5. Versuch: Benötigte Züge 3
+    Durchschnitt: 5,8 Züge
 
 c)  Beschreiben Sie eine Strategie um die Zahl zu erraten, mit der möglichst wenige Züge benötigt
     werden.
+
+    Der schnellste Weg zuverlässig ist immer die hälfte zu nehmen. Also man startet mit 50 bei zu klein würde man 75 nehmen bei dann zu groß würde man dann 62 usw. 
