@@ -40,8 +40,9 @@ b)  Was machen die einzelnen Funktionen? Geben sie an, was (welche Datentypen) d
     Stack legen und was sie auf der Standardausgabe ausgeben. Ergänzen Sie in der Funktionssignatur
     den Typ der Parameter und ggf. den Typ des Rückgabewertes. 
 
-    trennen: #erstellt einen Array in dem zwei mal die Eingabe enthalten ist
-    vermengen: #addiert die Zutaten
+    trennen: #nimmt einen Integer und macht daraus einen Array der zwei mal der Zahl besteht.
+    vermengen: #nimmt zwei Integer und addiert diese. Zudem wird "vermengen" und "..." ausgegeben und eine Sekunde gewartet.
+    
 
 
 c)  Ergänzen Sie die Funktionsdefinitionen mit einer aussagekräftigen Parameterbeschreibung("#< ...
