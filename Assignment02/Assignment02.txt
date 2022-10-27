@@ -7,13 +7,16 @@ a)  Lesen Sie Kapitel 3 (Evaluating Functions Without Side-Effects) und beantwor
     algebraische Umformung evaluiert werden? Geben Sie ein Beispiel für eine Funktion, die sich nicht
     durch algebraische Umformung evaluieren lässt.
 
-    Es gibt manche Funktionen, deren Ergebnis keine Rechnung ist sondern nur ein if Statement. 
+    Manche Funktionen sind abhängig von äußeren Umständen und manche geben werde zurück oder legen Sachen in 
+    Dateien ab. Das Ablegen von Dateien oder das auslesen von Daten lässt sich nicht algebraisch darstellen.
+
+    BSP: Eine Funktion die einen Wert einliest mit read-int und 2 drauf addiert. Und das Ergebnis wird dann zurück gegeben.
 
 
 b)  Lesen Sie Kapitel 4 (Recipe for Enumerations) und beantworten Sie folgende Frage: Welche Vorteile
     hat die cond-Anweisung gegenüber der if-Anweisung?
 
-    Ein cond-Anweisung hat den Vorteil, dass sie mehrere Bedingungen überprüfen kann. Wohingegen eine if-Anweisung nur eine Bedingung überprüft. Ein cond-Anweisung ist also als, wie ein verschachtelte if-Anweisung.
+    Ein cond-Anweisung hat den Vorteil, dass sie mehrere Bedingungen überprüfen kann. Wohingegen eine if-Anweisung nur eine Bedingung überprüft. Ein cond-Anweisung ist also, wie eine verschachtelte if-Anweisung.
 
 
 
