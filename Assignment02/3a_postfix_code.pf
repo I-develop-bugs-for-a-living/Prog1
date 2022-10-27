@@ -1,0 +1,12 @@
+# Änderungen von Jan Bühne, Marcelo Pedernera
+# Original gegeben
+f: (i) { 
+    "called f" println 
+    i 0 < {
+            i -1 * 
+        } {
+            i 2 * 
+        } if 
+} fun
+-3 f 
+f

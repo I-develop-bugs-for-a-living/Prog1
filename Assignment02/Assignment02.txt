@@ -24,6 +24,10 @@ c)  Lesen Sie Kapitel 5 (Recipe for Intervals) und beantworten Sie folgende Frag
     Symbole und Konstanten bei Intervallen?
 
     Die Intervalle werden als Symbole benannt. Die Konstanten sind die Grenzen der Intervalle.
+    Alternativ:
+    Die Grenzwerte der Intervalle werden Symbolen zugeordnet. Diese werden am Anfang des Programmes als Konstanten defineiert.
+    Somit müssen Sie nicht bei jedem Grenzwert-Check neu eingetragen werden und sobald sich die Grenzen ändern kann man die Konstante ändern und
+    somit haben alle Verweise den selben Wert.
 
 
 
@@ -55,23 +59,26 @@ b)  Was machen die einzelnen Funktionen? Geben sie an, was (welche Datentypen) d
             Dann wird "..." geprintet und der zweite Integer verwendet um eine bestimmte Zeit da zu pausieren.
             Am Ende wird der dritte Integer in einen String umgewandelt und dann mit dem String "g Kuchen gebacken" und dann geprintet.
 
+    Verweis auf Datei:2b_postfix_code.pf
 
 c)  Ergänzen Sie die Funktionsdefinitionen mit einer aussagekräftigen Parameterbeschreibung("#< ...
     >#"). Dazu gehören ein Purpose Statement, die Beschreibung der einzelnen Parameter sowie die
     Beschreibung des Rückgabewertes.
 
+    Verweis auf Datei: 2c_postfix_code.pf !!!Nicht fertig!!
 
 d)  Beschreiben Sie in 1-2 Sätzen, was das Programm nachfolgend nach dem Kommentar #Rezept
     macht.
 
-    Nach dem Kommentar #Rezept werden die einzelnen Funktionen mit den dazugehörigen Variablen aufgerufen und ausgeführt. Dazu wird die Variable vor der Funktion eingefügt.
+    Nach dem Kommentar #Rezept werden die einzelnen Funktionen mit den dazugehörigen Variablen aufgerufen und ausgeführt. Dazu wird die Variable vor der Funktion eingefügt oder Werte liegen von vorherigen Operationen auf dem Stack
 
 
 e)  Was ist Ihre Meinung zu dem Code hinter dem Kommentar #Rezept. Sollten Programme so geschrieben sein, sodass der Programmcode annähernd wie natürliche Sprache klingt? Begründen
     Sie kurz.
 
     Ich bin der Meinung das ist nicht sinnvoll den Code so zu schreiben, da die Namen der Funktionen nichts darüber aussagen, was diese nun tun. 
-    Dadurch muss man die Funktion selbst betrachten um zu verstehen was genau diese tut. 
+    Dadurch muss man die Funktion selbst betrachten um zu verstehen was genau diese tut. Und richtige Sprache enthält mehr als nur logische Ausdrücke
+    und zum verstehen von Programmen brauch man nicht das ganze andere Gedöns was Sprache noch so enthält, sondern für programmieren brauchen wir nur kurze kompakte Aussagen oder Namen.
     
 
 
@@ -79,10 +86,24 @@ Aufgabe 3:
 
 a)  Für die Lesbarkeit von Quelltext ist die Formatierung sehr wichtig, denn Quelltext wird häufiger
     gelesen, als geschrieben. Gegeben sei folgender unformatierter Quelltext:
+    f: (i) { "called f" println i 0 < { i -1 * } { i 2 * } if }
+    fun -3 f f
+    Formatieren Sie diesen Quelltext nach folgenden Regeln:
+    ...
+
+    Verweis auf Datei: 3a_postfix_code.pf
 
 
 b)  Erklären Sie das Verhalten der Funktion f möglichst kurz und prägnant. Welcher Wert liegt nach
     Ausführung des gegebenen Codes auf dem Stack?
+
+    Function:
+        Wenn negativ, dann mach positiv.
+        Wenn positiv, dann verdopple.
+
+        -3 -> 3 -> 6
+
+        6 liegt am Ende auf dem Stack
 
 
 c)  Das Heron-Verfahren wurde in der iterativen Variante in PostFix implementiert (siehe: https://de.
@@ -90,6 +111,8 @@ c)  Das Heron-Verfahren wurde in der iterativen Variante in PostFix implementier
     Näherung - Zahl) < 0.01. Leider haben sich einige Fehler in die Funktion geschlichen. Formatieren
     Sie zuerst die Funktion, sodass sie gut lesbar ist. Finden Sie dann die Fehler und korrigieren Sie
     diese. Beschreiben Sie die Fehler.
+
+    Verweis auf Datei: 3c_postfix_code.pf
 
 
 
@@ -103,6 +126,7 @@ ist.
 a)  Implementieren Sie das Programm zum Zahlenraten wie beschrieben. Achten Sie darauf, dass der
     Stack nach erfolgreicher Beendigung des Spiels leer ist (ohne die Verwendung von clear).
 
+    Verweis auf Datei: 4a_postfix_code.pf
 
 b)  Spielen Sie das Spiel selbst fünf Mal. Notieren Sie jeweils wie viele Züge Sie gebraucht haben
     um die Zahl zu erraten. Schreiben Sie ebenfalls auf wie viele Züge Sie in Durchschnitt gebraucht

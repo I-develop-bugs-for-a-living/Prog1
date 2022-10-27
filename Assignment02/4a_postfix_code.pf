@@ -1,3 +1,4 @@
+# Autoren Jan Bühne, Marcelo Pedernera
 100 rand-int random-num!
 "" guess!
 false guessed_correct!
