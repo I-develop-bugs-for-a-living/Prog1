@@ -1,5 +1,8 @@
 Aufgabe 1:
-    a) 
+    a) Constructor Functions nehmen Daten als Eingabe und konstruieren ein kompaktes Object welches all diese Daten enthält
+       Accersor Functions nehmen das kompakte Objekt als Eingabe und sind in der Lage die abgespeicherten Werte des Objekt zurückzugeben
+
+    b) Die data
 
 Aufgabe 2:
 
