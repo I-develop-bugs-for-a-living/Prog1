@@ -7,7 +7,7 @@ Aufgabe 1:
     fällt mir einfacher Funktionen für übergeordnete Typen zu schreiben, weil ich durch die Bereitgestellten Funktionen eine einfache Fallunterscheidung
     machen kann und somit Code spare und damit mich nicht wiederhole
 
-    c)
+    c) Die Induktionshypothese ist das Aufrufen der Funktion in sich selbst mit der Annahme, dass diese genau so funktioniert wie vorgestellt.
 
     d) Datadef ist sehr interessant und ich hätte nicht gedacht das Postfix es erlaubt so komplexen Code zu schreiben.
 
