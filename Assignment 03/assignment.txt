@@ -9,10 +9,4 @@ Aufgabe 1:
 
     c) Die Induktionshypothese ist das Aufrufen der Funktion in sich selbst mit der Annahme, dass diese genau so funktioniert wie vorgestellt.
 
-    d) Datadef ist sehr interessant und ich hätte nicht gedacht das Postfix es erlaubt so komplexen Code zu schreiben.
-
-Aufgabe 2:
-
-Aufgabe 3:
-
-Aufgabe 4:
+    d) Aus den Kapitel war datadef sehr interessant und ich hätte nicht gedacht das Postfix es erlaubt so komplexen Code zu schreiben.
