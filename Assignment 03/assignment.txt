@@ -10,3 +10,14 @@ Aufgabe 1:
     c) Die Induktionshypothese ist das Aufrufen der Funktion in sich selbst mit der Annahme, dass diese genau so funktioniert wie vorgestellt.
 
     d) Aus den Kapitel war datadef sehr interessant und ich hätte nicht gedacht das Postfix es erlaubt so komplexen Code zu schreiben.
+
+Aufgabe 2:
+   Siehe Datei: aufg_2_postfix.pf
+
+Aufgabe 3:
+    a, b, c: Siehe Datei: chess.pf
+
+    d)  # remove invalid positions (the ones not on the board)
+        # iterates over a, dups value of each element, so every element is on the stack twice
+        # then checks if point is valid, get bool as return, negates value, if point is not valid pop value from stack (stack empty), if point is valid add position to list (stack is empty again), then sorts array
+    
