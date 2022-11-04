@@ -1,0 +1,84 @@
+﻿# data definition
+List: {                            # A list is either
+    Null: ()                       # empty or
+    Pair: (first :Obj, rest :List) # a first element followed by a rest-list.
+} datadef
+
+# Turns an array into a list.
+tolist: (a :Arr -> :List) {
+    null a reverse { swap pair } for
+} fun
+
+# Turns a list into a string.
+tostr: (l :List -> :Str) {
+    { l null? } { "" }
+    { l pair-rest null? } { l pair-first str }
+    { true } { 
+        l pair-first str " " +  
+        l pair-rest recur + 
+    }
+} cond-fun
+
+[1 2 3 4 5] tolist x!
+x tostr "1 2 3 4 5" test=
+null tostr "" test=
+5 null pair tostr "5" test=
+5 6 null pair pair tostr "5 6" test=
+
+##################################################
+
+# a) todo: implement and write purpose statement
+lprepend: (l :List, x :Obj -> :List) {
+    null
+} fun
+
+null 10 lprepend 20 lprepend 30 lprepend y!
+y tostr "30 20 10" test=
+
+# b) todo: implement and write purpose statement
+has-string?: (l :List -> :Bool) {
+    false
+} fun
+
+x has-string? false test=
+"a" null pair has-string? true test=
+["a" 1] tolist has-string? true test=
+[1 "a"] tolist has-string? true test=
+[1 2] tolist has-string? false test=
+[1 2 "b"] tolist has-string? true test=
+
+# c) todo: implement and write purpose statement
+only-numbers?: (l :List -> :Bool) {
+    false
+} fun
+
+x only-numbers? true test=
+null only-numbers? true test=
+"a" null pair only-numbers? false test=
+["a" 1] tolist only-numbers? false test=
+[1 2] tolist only-numbers? true test=
+
+# d) todo: implement and write purpose statement
+keep-strings: (l :List -> :List) {
+    null
+} fun
+
+["hello" "world" 1 true] tolist x!
+x keep-strings tostr "hello world" test=
+
+# e) optional todo: implement and write purpose statement
+rev-rec: (l :List, result :List -> :List) {
+    null
+} fun
+
+# Reverses l.
+rev: (l :List -> :List) {
+    l null rev-rec
+} fun
+
+null rev tostr "" test=
+1 null pair rev tostr "1" test=
+[1 2] tolist rev tostr "2 1" test=
+x rev tostr "true 1 world hello" test=
+
+test-stats

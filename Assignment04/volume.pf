@@ -1,0 +1,32 @@
+#<
+In einem Programm sollen verschiedene Formen von geometrischen Körpern, nämlich
+Zylinder, Kugel und Quader, repräsentiert werden. Entwickeln Sie eine Funktion,
+die diese geometrischen Körper vararbeiten kann (Parametertyp: Shape) und das
+zugehörige Volumen berechnet.
+>#
+
+# Verwenden Sie das "recipe for variant data"
+
+Shape: {
+    # r: Radius, h: Height
+    Zylinder: (r :Num, h :Num)
+    Kugel: (r :Num)
+    # a: Seitenlänge, l: Tiefe
+    Quader: (a :Num, l :Num)
+} datadef
+
+# todo: implementieren Sie die Funktion zur Volumenberechnung
+shape-to-volume: (s :Shape -> :Num) {
+    {s zylinder?} {PI s zylinder-r s zylinder-r * * 4 / s zylinder-h *}
+    {s kugel?} {4 3 / PI * s kugel-r 3 pow *}
+    {s quader?} {s quader-a 2 pow s quader-l *}
+} cond-fun
+
+# todo: implementieren Sie die Testfunktion
+testfunktion: {
+    2 3 quader shape-to-volume 12 test=
+    2 3 zylinder shape-to-volume 9.4 0.1 test~=
+    2 kugel shape-to-volume 33.51 0.1 test~=
+} fun
+# todo: rufen Sie die Testfunktion auf
+testfunktion

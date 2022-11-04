@@ -1,0 +1,77 @@
+﻿#todo: variant definition
+Vehicle: [
+   
+] datadef
+
+#constants
+CO2-PER-KM-E-Scooter: 0.1 ! 
+ENERGY-PER-KM: 500 ! #500 mAh per km
+CO2-FOR-CHARGING: 20 !
+CO2-PER-KM-PER-KG2-CAR: 0.0001 !
+
+co2-for-km: (vehicle :Arr, km :Num){
+    #todo
+    0
+}cond-fun
+
+test-co2-for-km: (){
+    bicycle bike!
+    1000 4 car test-car!
+    1000 3 car test-car2!
+    20000 e-scooter test-e-scooter!
+    10000 e-scooter test-e-scooter2!
+
+    bike 1 co2-for-km 0 test=
+    bike 10 co2-for-km 0 test=
+    bike 0 co2-for-km 0 test=
+    bike 1901 co2-for-km 0 test=
+
+    #todo: Add at least 3 further tests for each vehicle type
+    test-car 10 co2-for-km 4000 test=
+    test-e-scooter 10 co2-for-km 21 test=
+}fun
+
+test-co2-for-km
+test-stats
+
+
+#create dummy data
+# weight cylinder constructor
+1200.0 3 car small-car!
+1500.0 4 car normal-car!
+3000.0 6 car suv!
+
+# battery-capacity contructor
+12000 e-scooter super-scooter!
+
+# no parameters constructor
+bicycle old-bike!
+bicycle new-bike!
+
+[   #[vecicle, km]
+    [small-car, 3000],
+    [small-car, 10000],
+    [small-car, 1500],
+    [normal-car, 6000],
+    [suv, 20000],
+    [suv, 1500],
+    [old-bike, 5000],
+    [old-bike, 2000],
+    [old-bike, 100],
+    [old-bike, 800],
+    [new-bike, 4000],
+    [new-bike, 6000],
+    [new-bike, 2000],
+    [new-bike, 10],
+    [super-scooter, 150],
+    [super-scooter, 2000],
+    [super-scooter, 850],
+] vehicle-park-with-km!
+
+
+#todo: calculate the sum of CO2 emission for the given array vehicle-park-with-km
+0
+
+
+"Sum of CO2 emissions: " print
+println #should be 127766840
