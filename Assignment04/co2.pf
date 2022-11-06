@@ -1,6 +1,8 @@
 ﻿#todo: variant definition
 Vehicle: [
-   
+   Bicycle: ()
+   E-Scooter: (battery-capacity :Num)
+   Car: (weight :Num, cylinder :Num)
 ] datadef
 
 #constants
@@ -11,7 +13,9 @@ CO2-PER-KM-PER-KG2-CAR: 0.0001 !
 
 co2-for-km: (vehicle :Arr, km :Num){
     #todo
-    0
+    {vehicle bicycle?} {0}
+    {vehicle e-scooter?} {CO2-PER-KM-E-Scooter km * ENERGY-PER-KM km * vehicle e-scooter-battery-capacity / ceil CO2-FOR-CHARGING * +}
+    {vehicle car?} {vehicle car-weight 2 pow CO2-PER-KM-PER-KG2-CAR * vehicle car-cylinder * km *}
 }cond-fun
 
 test-co2-for-km: (){
@@ -70,8 +74,7 @@ bicycle new-bike!
 
 
 #todo: calculate the sum of CO2 emission for the given array vehicle-park-with-km
-0
-
+0 vehicle-park-with-km { p! p .0 p .1 co2-for-km +} for
 
 "Sum of CO2 emissions: " print
 println #should be 127766840
