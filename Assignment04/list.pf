@@ -27,18 +27,20 @@ null tostr "" test=
 
 ##################################################
 
-# a) todo: implement and write purpose statement
+# a) function adds the object to the front of the list
 lprepend: (l :List, x :Obj -> :List) {
-    null
+    x l pair 
 } fun
 
 null 10 lprepend 20 lprepend 30 lprepend y!
 y tostr "30 20 10" test=
 
-# b) todo: implement and write purpose statement
+# b) todo: checking if the list has atleast one string
 has-string?: (l :List -> :Bool) {
-    false
-} fun
+    {l null?} {false}
+    {l pair-first str?} {true}
+    {true}{l pair-rest has-string?}
+} cond-fun
 
 x has-string? false test=
 "a" null pair has-string? true test=
@@ -47,10 +49,12 @@ x has-string? false test=
 [1 2] tolist has-string? false test=
 [1 2 "b"] tolist has-string? true test=
 
-# c) todo: implement and write purpose statement
+# c) todo: checking if every element of the list a :Num
 only-numbers?: (l :List -> :Bool) {
-    false
-} fun
+    {l null?} {true}
+    {l pair-first num?} {l pair-rest only-numbers?}
+    {true} {false}
+} cond-fun
 
 x only-numbers? true test=
 null only-numbers? true test=
@@ -58,27 +62,14 @@ null only-numbers? true test=
 ["a" 1] tolist only-numbers? false test=
 [1 2] tolist only-numbers? true test=
 
-# d) todo: implement and write purpose statement
+# d) todo: returning a list with only the strings from the original list
 keep-strings: (l :List -> :List) {
-    null
-} fun
+    {l null?} {null}
+    {l pair-first str?} {l pair-rest keep-strings l pair-first}
+    {true} {l "" pair-first-set l pair-rest keep-strings}
+} cond-fun
 
 ["hello" "world" 1 true] tolist x!
 x keep-strings tostr "hello world" test=
-
-# e) optional todo: implement and write purpose statement
-rev-rec: (l :List, result :List -> :List) {
-    null
-} fun
-
-# Reverses l.
-rev: (l :List -> :List) {
-    l null rev-rec
-} fun
-
-null rev tostr "" test=
-1 null pair rev tostr "1" test=
-[1 2] tolist rev tostr "2 1" test=
-x rev tostr "true 1 world hello" test=
 
 test-stats
