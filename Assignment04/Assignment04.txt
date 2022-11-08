@@ -5,3 +5,4 @@ c)  siehe cd-ls-mkdir.png
     mkdir: Erzeugt an dem aktuellen Ort einen neuen Ordner. 
     ls: Zeigt alle Elemente des aktuellen Ort.
     cd: Erlaubt den Ort zu wechseln.
+d)

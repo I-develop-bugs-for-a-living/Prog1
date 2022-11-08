@@ -142,4 +142,4 @@ b)  Spielen Sie das Spiel selbst fünf Mal. Notieren Sie jeweils wie viele Züge
 c)  Beschreiben Sie eine Strategie um die Zahl zu erraten, mit der möglichst wenige Züge benötigt
     werden.
 
-    Der schnellste Weg zuverlässig ist immer die hälfte zu nehmen. Also man startet mit 50 bei zu klein würde man 75 nehmen bei dann zu groß würde man dann 62 usw. 
+    Der schnellste Weg zuverlässig ist immer die hälfte zu nehmen. Also man startet mit 50 bei zu klein würde man 75 nehmen bei dann zu groß würde man dann 62 usw. l,

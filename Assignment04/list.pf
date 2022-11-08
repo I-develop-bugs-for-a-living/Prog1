@@ -65,8 +65,8 @@ null only-numbers? true test=
 # d) todo: returning a list with only the strings from the original list
 keep-strings: (l :List -> :List) {
     {l null?} {null}
-    {l pair-first str?} {l pair-rest keep-strings l pair-first}
-    {true} {l "" pair-first-set l pair-rest keep-strings}
+    {l pair-first str?} {l pair-first l pair-rest keep-strings pair}
+    {true} {l pair-rest keep-strings}
 } cond-fun
 
 ["hello" "world" 1 true] tolist x!
