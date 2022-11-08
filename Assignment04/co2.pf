@@ -11,13 +11,15 @@ ENERGY-PER-KM: 500 ! #500 mAh per km
 CO2-FOR-CHARGING: 20 !
 CO2-PER-KM-PER-KG2-CAR: 0.0001 !
 
-co2-for-km: (vehicle :Arr, km :Num){
-    #todo
+#calculating the co2 emission per km depending of the vehicle
+co2-for-km: (vehicle :Arr, km :Num) {
     {vehicle bicycle?} {0}
-    {vehicle e-scooter?} {CO2-PER-KM-E-Scooter km * ENERGY-PER-KM km * vehicle e-scooter-battery-capacity / ceil CO2-FOR-CHARGING * +}
+    {vehicle e-scooter?} {
+        CO2-PER-KM-E-Scooter km * ENERGY-PER-KM km * vehicle e-scooter-battery-capacity / ceil CO2-FOR-CHARGING * +}
     {vehicle car?} {vehicle car-weight 2 pow CO2-PER-KM-PER-KG2-CAR * vehicle car-cylinder * km *}
-}cond-fun
+} cond-fun
 
+#test function
 test-co2-for-km: (){
     bicycle bike!
     1000 4 car test-car!
@@ -25,15 +27,20 @@ test-co2-for-km: (){
     20000 e-scooter test-e-scooter!
     10000 e-scooter test-e-scooter2!
 
+    #todo: Add at least 3 further tests for each vehicle type
     bike 1 co2-for-km 0 test=
     bike 10 co2-for-km 0 test=
     bike 0 co2-for-km 0 test=
     bike 1901 co2-for-km 0 test=
-
-    #todo: Add at least 3 further tests for each vehicle type
     test-car 10 co2-for-km 4000 test=
+    test-car2 42 co2-for-km 12600 test=
+    test-car 3 co2-for-km 1200 test=
+    test-car2 500 co2-for-km 150000 test=
     test-e-scooter 10 co2-for-km 21 test=
-}fun
+    test-e-scooter 15 co2-for-km 21.5 test=
+    test-e-scooter2 1 co2-for-km 20.1 test=
+    test-e-scooter2 64 co2-for-km 86.4 test=
+} fun
 
 test-co2-for-km
 test-stats
