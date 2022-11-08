@@ -5,4 +5,8 @@ c)  siehe cd-ls-mkdir.png
     mkdir: Erzeugt an dem aktuellen Ort einen neuen Ordner. 
     ls: Zeigt alle Elemente des aktuellen Ort.
     cd: Erlaubt den Ort zu wechseln.
-d)
+d)  1.  Entweder man verwendet cd mit ls abwechselnd indem man sich mit ls die Inhalt in dem Ordner anzeigt oder
+        man verwendet nur cd und verwendet TAB um den nächsten Ordner zu finden.
+    2.  Entweder man verwendet cd .. und danach cd A02/ oder man kombiniert die beiden und verwendet direkt cd ../A02/.
+    3.  Man landet im Ordner A01, aber warum sollte man das tun, weil man erst in folder geht danach wieder raus, wieder rein und dann erst in A01.
+    4.  Der Befehl ls -al zeigt alle Elemente in dem Ordner mit Erstellungsdatum, Größe, Datentype, Rechten usw. an.
