@@ -46,4 +46,3 @@ int main(void) {
     price_test();
     return 0;
 }
-
