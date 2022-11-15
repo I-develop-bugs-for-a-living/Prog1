@@ -1,10 +1,5 @@
 #include "base.h"
 
-int main(void) {
-    printiln(number_of_days(4));
-
-}
-
 int number_of_days(int year) {
     bool multiple_of_four = (year % 4 == 0);
     bool multiple_of_hundred = (year % 100 == 0);
@@ -14,4 +9,23 @@ int number_of_days(int year) {
     } else {
         return 366;
     }
+}
+
+int test_number_of_years(void) {
+    test_equal_i(number_of_days(2000), 366);
+    test_equal_i(number_of_days(2001), 365);
+    test_equal_i(number_of_days(2002), 365);
+    test_equal_i(number_of_days(2003), 365);
+    test_equal_i(number_of_days(2004), 366);
+    test_equal_i(number_of_days(10), 365);
+    test_equal_i(number_of_days(100), 365);
+    test_equal_i(number_of_days(400), 366);
+    test_equal_i(number_of_days(800), 366);
+    test_equal_i(number_of_days(1200), 366);
+    return 0;
+}
+
+int main(void) {
+    test_number_of_years();
+    return 0;
 }

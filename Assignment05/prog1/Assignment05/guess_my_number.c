@@ -6,21 +6,23 @@ int main(void) {
     int guess = 0;
     int tries = 0;
     printf("Spiele das Spiel 'Rate meine Zahl'!\n");
+    printf("Ich habe mir eine Zahl zwischen 0 und 100 ausgedacht. Kannst du sie erraten?\n");
+    printf("---------------------------------------\n");
     while (!found) {
-        printf("---------------------------------------\n");
-        printf("Geben Sie eine Zahl zwischen 0 und 100 ein: ");
         guess = i_input();
         if (tries >= 10) {
-            printsln("Sie haben zu oft geraten. Sie haben verloren.");
+            printf("Sie haben zu oft geraten. Sie haben verloren.\n");
             break;
         }
-        if (guess == secret_number) {
-            printsln("Sie haben die Zahl erraten!");
+        if (guess > 100) {
+            printf("🤯 Big brain time\n");
+        } else if (guess == secret_number) {
+            printf("Match!\n");
             found = true;
         } else if (guess < secret_number) {
-            printsln("Die gesuchte Zahl ist größer.");
+            printf("Too Small!\n");
         } else {
-            printsln("Die gesuchte Zahl ist kleiner.");
+            printf("Too Large!\n");
         }
         tries++;
         printf("Used tries: %d \n", tries);

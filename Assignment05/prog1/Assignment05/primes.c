@@ -11,7 +11,7 @@ make primes && ./primes
 int print_primes_in_intervall(int lower, int upper){
     
     int prime = lower;
-    if( upper > lower){
+    if (upper > lower){
         if(prime < 2) 
             prime = 2;;
         }
@@ -26,9 +26,10 @@ int print_primes_in_intervall(int lower, int upper){
                 }
                 i++;
             }
-            if(is_a_prime)
+            if(is_a_prime) {
                 count++;
                 printf("Die %2d. Primzahl im Intervall: [%d,%d)] ist: %2d\n", count, lower, upper, prime);
+            }
             prime++;
         }
         return count;
