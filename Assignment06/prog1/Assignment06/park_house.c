@@ -20,8 +20,13 @@ String print_park_house_state(ParkHouseState state);
 static void det_park_house_state_test() {
     //todo
 
+<<<<<<< HEAD
 //a) todo
 }
+=======
+}
+//a) todo
+>>>>>>> 0890b186d83dda7767743f31158ecf2458ba4bf4
 ParkHouseState det_park_house_state(int free_spots) {
     return null;
 }
