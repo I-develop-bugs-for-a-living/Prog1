@@ -3,36 +3,36 @@ Compile: make primes
 Run: ./primes
 make primes && ./primes
 */
-
-#include "Base.h" //include prog1lib  
+/*"fatal error: bas.eh: No such file or directory" da base.h falsch geschrieben wurde konnte der Compiler kein Adresse für die libary finden.*/
+#include "base.h" //include prog1lib  
 /*
     Prints the primes in the given interval [lower, upper)].
 */
 int print_primes_in_intervall(int lower, int upper){
-    
     int prime = lower;
-    if (upper > lower){
+    /*"‘prime’ undeclared (first use in this function)", da die Variable prime in dem If-Statment definiert ist und damit nur für den Fall, dass das if-statment wahr ist definiert ist*/
+    if ( upper > lower) {
         if(prime < 2) 
             prime = 2;;
         }
         int count = 0;
         while (prime < upper){  
-            int i = 2;
+            int i = 2
             bool is_a_prime = true;
             while(i <= (prime >> 1)){
-                    if( prime % i == 0 ){
+                    if( prime % i = 0 ){
                     is_a_prime = false;
                     break;
                 }
                 i++;
             }
-            if(is_a_prime) {
+            if(is_a_prime)
                 count++;
                 printf("Die %2d. Primzahl im Intervall: [%d,%d)] ist: %2d\n", count, lower, upper, prime);
-            }
             prime++;
         }
         return count;
+    }
 }
 
 void test_print_primes_in_intervall(){
