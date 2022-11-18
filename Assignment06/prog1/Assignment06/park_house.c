@@ -11,6 +11,9 @@ of free parking spots */
 
 typedef enum ParkHouseState {
 	// todo
+    fullParkHouse,
+    almostfullParkHouse,
+    freeParkHouse
 } ParkHouseState;
 
 ParkHouseState det_park_house_state(int free_spots);
@@ -19,20 +22,36 @@ String print_park_house_state(ParkHouseState state);
 
 static void det_park_house_state_test() {
     //todo
+    test_equal_i(det_park_house_state(0), fullParkHouse);
+    test_equal_i(det_park_house_state(1), almostfullParkHouse);
+    test_equal_i(det_park_house_state(12), freeParkHouse);
 
-<<<<<<< HEAD
-//a) todo
-}
-=======
 }
 //a) todo
->>>>>>> 0890b186d83dda7767743f31158ecf2458ba4bf4
 ParkHouseState det_park_house_state(int free_spots) {
-    return null;
+    switch (free_spots ? (free_spots / 10) : -1) {
+        case -1:
+            return fullParkHouse;
+        case 0:
+            return almostfullParkHouse;
+        default:
+            return freeParkHouse;
+    }
+    return fullParkHouse;
 }
 
 // b) todo
 String print_park_house_state(ParkHouseState state) {
+    switch (state) {
+        case fullParkHouse:
+            return "The Park House is full";
+        case almostfullParkHouse:
+            return "The Park House is almost full";
+        case freeParkHouse:
+            return "The Park House is free";
+        default:
+            return "unknown";
+    }
     return "";
 }
 
@@ -42,6 +61,12 @@ int main(void) {
     printsln(print_park_house_state(det_park_house_state(0)));
     printsln(print_park_house_state(det_park_house_state(8)));
     printsln(print_park_house_state(det_park_house_state(21)));
+    printsln(print_park_house_state(det_park_house_state(100)));
+    while(true) {
+        printf("Enter the number of free parking spots: ");
+        int free_spots = i_input();
+        printsln(print_park_house_state(det_park_house_state(free_spots)));
+    }
     return 0;
 }
 

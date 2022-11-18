@@ -7,7 +7,12 @@
 #include "base.h"
 
 String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 //todo: write purpose statement inclusive @param and @return
+/*
+Function: convertBase
+Purpose: Tells me how many bits are needed with a certain base
+*/
 int length_for_base(int number, int base){
     if(number == 0)
         return 1;
@@ -38,11 +43,25 @@ String get_string_for_number_and_base(int number, int base){
     @return String der die Zahl in der Zielbasis enthaelt.
 */
 String convert_to_base(int number, int base){
+
     int len = length_for_base(number, base);
     String s = get_string_for_number_and_base(number, base);
+    
+    
+    if (number == 0){
+        s[0] = '0';
+        return s;
+    }
+
+    while(number > 0) {
+        int remainder = number % base;
+        number = number / base;
+        s_set(s, len - 1, characters[remainder]);
+        len--;
+    }
 	//s_set(s, 0, 'H');
-	char c = s_get(characters, 12);
-	s_set(s, 0, c);
+	// char c = s_get(characters, 12);
+	// s_set(s, 0, c);
     return s;
 }
 
@@ -97,7 +116,11 @@ void print_bits(int number){
 
 void bit_operations(){
     printsln("Bitmagic");
-    //what does the following?
+    // what does the following do?
+
+    /*
+    Die Bit-Operation AND ist eine logische Operation, die zwei Bits auf 1 setzt, wenn beide Bits 1 sind, sonst auf 0.
+    */
     printsln("&");
     int a = 0xaf;
     int b = 0xa5;
@@ -106,7 +129,10 @@ void bit_operations(){
     print_bits(a);
     print_bits(b);
     print_bits(c);
-    
+
+    /*
+    Die Bit-Operation OR ist eine logische Operation, die zwei Bits auf 1 setzt, wenn mindestens ein Bit 1 ist, sonst auf 0.
+    */
     printsln("|");
     a = 0xb1;
     b = 0x93;
@@ -115,6 +141,10 @@ void bit_operations(){
     print_bits(b);
     print_bits(c);
     
+
+    /*
+    Die Bit-Operation XOR ist eine logische Operation, die zwei Bits auf 1 setzt, wenn genau ein Bit 1 ist, sonst auf 0.
+    */
     printsln("^");
     a = 0xb1;
     b = 0x33;
@@ -123,8 +153,12 @@ void bit_operations(){
     print_bits(b);
     print_bits(c);
     
+    /*
+    Die Bit-Operation >> ist eine Verschiebe-Operation, die die Bits um n-Stellen nach rechts verschiebt und dabei auch bits abschneidet.
+    Die Bit-Operation << ist eine Verschiebe-Operation, die die Bits um n-Stellen nach links verschiebt und die n-Stellen mit 0 auffuellt.
+    */
     printsln("<< und >>");
-    a = 0x30;
+    a = 0x3;
     print_bits(a);
     a <<= 2;
     print_bits(a);
@@ -135,12 +169,29 @@ void bit_operations(){
 
 //todo
 int set_bit(int value, int index, bool bit){
-
+    if (bit){
+        value |= 1 << index;
+    } else {
+        value &= ~(1 << index);
+    }
     return value;
 }
 
 //todo
 bool get_bit(int value, int index ){
+    int length = length_for_base(value, 2);
+    if (index == -1) {
+            return value >> (length - 1);
+    }
+    while (value > 0) {
+        int remainder = value % 2;
+        value = value / 2;
+        if (index == 0){
+            return remainder ? true : false;
+        }
+        index--;
+    }
+
     return false;
 }
 
@@ -160,6 +211,7 @@ void test_get_set_bit(){
     test_equal_b(get_bit(a,6), true);
     test_equal_b(get_bit(a,7), false);
     test_equal_b(get_bit(a,8), false);
+    test_equal_b(get_bit(a,-1), true);
     
     a = set_bit(a, 0, false);
     test_equal_i(a, 0x76);
@@ -194,13 +246,16 @@ void test_extract_bits(){
 }
 
 int main(void){
-    test_convert_to_base();
-    /* Entfernen Sie Kommentierung der nachfolgenden Zeilen fuer Aufgabe 2
-    printsln("------------------------------");
-    bit_operations();
-    printsln("------------------------------");
+    // test_convert_to_base();
+    // Entfernen Sie Kommentierung der nachfolgenden Zeilen fuer Aufgabe 2
+    // printsln("------------------------------");
+    // bit_operations();
+    // printsln("------------------------------");
+    int a = 0x77;
+    print_bits(a);
+    a >>= 15;
+    print_bits(a);
     test_get_set_bit();
     test_extract_bits();
-    */
     return 0;
 }
