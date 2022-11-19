@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "base.h"
 
 int main(void) {
@@ -28,4 +29,26 @@ int main(void) {
         printf("Used tries: %d \n", tries);
     }
     return 0;
+=======
+/*
+ * Compile:         make X
+ * Run:             ./X
+ * Compile and Run: make X && ./X
+ */
+#include "base.h" // prog1lib
+
+int main(void){
+    int random_number = i_rnd(101);
+    printsln("Guess my number:");
+    int guess = i_input();
+    while (guess != random_number) {
+        if (guess < random_number){
+            printsln("Too Small!");
+        } else if (guess > random_number) {
+            printsln("Too Large!");
+        }
+        guess = i_input();
+    }
+    printsln("Match!");
+>>>>>>> d0c02ad8a49113f835b449f0074b7d510f131094
 }
