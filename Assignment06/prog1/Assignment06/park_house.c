@@ -9,50 +9,58 @@ make park_house && ./park_house
 /* Design a function that returns the state of a park house given the number
 of free parking spots */
 
+/*Definiert die einzelnen Zustände des Parkhauses*/
+
 typedef enum ParkHouseState {
-	// todo
-    fullParkHouse,
-    almostfullParkHouse,
-    freeParkHouse
+    FULL_PARK_HOUSE = 0,
+    NEARLY_FULL_PARK_HOUSE,
+    FREE_PARK_HOUSE = 10,
 } ParkHouseState;
 
 ParkHouseState det_park_house_state(int free_spots);
 
 String print_park_house_state(ParkHouseState state);
 
+/*Testet ob det_park_house_state richtig funktioniert*/
 static void det_park_house_state_test() {
-    //todo
-    test_equal_i(det_park_house_state(0), fullParkHouse);
-    test_equal_i(det_park_house_state(1), almostfullParkHouse);
-    test_equal_i(det_park_house_state(12), freeParkHouse);
-
+    test_equal_i(det_park_house_state(0), 0);
+    test_equal_i(det_park_house_state(5), 1);
+    test_equal_i(det_park_house_state(90), 10);
+    test_equal_i(det_park_house_state(10), 10);
 }
-//a) todo
+
+/*Bestimmt den Zustand des Parkhauses und gibt ihn als ParkHouseState aus*/
 ParkHouseState det_park_house_state(int free_spots) {
-    switch (free_spots ? (free_spots / 10) : -1) {
-        case -1:
-            return fullParkHouse;
-        case 0:
-            return almostfullParkHouse;
-        default:
-            return freeParkHouse;
+    /*Verhindert das eine negative Zahl eingegeben wird*/
+    if (free_spots < 0) {
+        printsln("free spots, error: negative amount");
+        exit(1);
+        } else if (free_spots == FULL_PARK_HOUSE) {
+            return FULL_PARK_HOUSE;
+        } else if (free_spots < FREE_PARK_HOUSE && free_spots > FULL_PARK_HOUSE) {
+            return NEARLY_FULL_PARK_HOUSE;
+        } else {
+            return FREE_PARK_HOUSE;
     }
-    return fullParkHouse;
+    return 0;
 }
-
-// b) todo
+/* b) Gibt den aktuellen Zustand des Parkhaus als String aus,
+ basierend auf den ausgegeben Zustand von der Funktion det_park_house_state. */
 String print_park_house_state(ParkHouseState state) {
     switch (state) {
-        case fullParkHouse:
-            return "The Park House is full";
-        case almostfullParkHouse:
-            return "The Park House is almost full";
-        case freeParkHouse:
-            return "The Park House is free";
-        default:
-            return "unknown";
+    case FREE_PARK_HOUSE:
+        return "Das Parkhaus hat frei Plätze.";
+        break;
+    case NEARLY_FULL_PARK_HOUSE:
+        return "Das Parkhaus ist fast voll.";
+        break;
+    case FULL_PARK_HOUSE:
+        return "Das Parkhaus ist voll.";
+        break;
+    default:
+        break;
     }
-    return "";
+    return 0;
 }
 
 
@@ -61,12 +69,6 @@ int main(void) {
     printsln(print_park_house_state(det_park_house_state(0)));
     printsln(print_park_house_state(det_park_house_state(8)));
     printsln(print_park_house_state(det_park_house_state(21)));
-    printsln(print_park_house_state(det_park_house_state(100)));
-    while(true) {
-        printf("Enter the number of free parking spots: ");
-        int free_spots = i_input();
-        printsln(print_park_house_state(det_park_house_state(free_spots)));
-    }
     return 0;
 }
 
