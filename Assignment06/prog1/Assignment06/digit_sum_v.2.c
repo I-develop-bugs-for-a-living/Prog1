@@ -1,6 +1,8 @@
 #include "base.h"
 
-/*Überprüft die Anzahl der Ziffern der Zahl*/
+/*Überprüft die Anzahl der Ziffern der Zahl, da bei einer alternierende Quersumme
+wichtig ist ob die Zahl gerade oder ungerade ist. Da die erste Ziffer der alternierenden Quersumme immer positiv sein soll, 
+aber die Funktion digit_sum von hinten anfängt, kann nicht allgemein gesagt werden, dass im zweiten Schritt die Zahl negativ sein soll.*/
 int even_or_uneven (int number) {
     int times;
     while(number) {
@@ -32,10 +34,10 @@ int digit_sum(unsigned number, bool alternating) {
     return sum;
 }
 
-bool divisible_by_eleven(unsigned number) {
+/*bool divisible_by_eleven(unsigned number) {
     // OPTIONAL TODO
     return false;
-}
+}*/
 
 
 void digit_sum_test() {
