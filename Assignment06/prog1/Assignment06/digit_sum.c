@@ -17,7 +17,7 @@ int digit_sum(unsigned number, bool alternating) {
             sum += s_get(string_of_int, i) - 48;
             //printiln(sum);
         }
-    }
+    }   
     //printf("\n");
     
     return sum;
