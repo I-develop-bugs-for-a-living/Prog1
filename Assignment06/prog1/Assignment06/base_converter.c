@@ -256,6 +256,6 @@ int main(void){
     a >>= 15;
     print_bits(a);
     test_get_set_bit();
-    test_extract_bits();
+    //test_extract_bits();
     return 0;
 }
