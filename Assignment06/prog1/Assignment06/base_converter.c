@@ -167,7 +167,12 @@ void bit_operations(){
     
 }
 
-//todo
+/*
+Die Funktion setzt den Bit an der Stelle index auf den Wert 0,1 abhängig von bit. 
+@param die Zahl, die verändert werden soll
+@param die Stelle an der die Zahl verändert werden soll
+@param der Wert auf den die Stelle gesetzt werden soll true=1 und false=0
+*/
 int set_bit(int value, int index, bool bit){
     if (bit){
         value |= 1 << index;
@@ -177,7 +182,12 @@ int set_bit(int value, int index, bool bit){
     return value;
 }
 
-//todo
+/*
+Die Funktion gibt den Wahrheitswert true zurück insofern die Zahl an der sovielten Stelle eine 1 hat.
+@param value nimmt eine Ganzzahl im Dezimalsystem auf die die Funktion angewendet werden soll. 
+@param index gibt die Stelle der Binärzahl an die überprüft werden soll.
+@return Gibt einen Wahrheitswert zurück der angibt, ob die Binärzahl an der Stelle index eine 1 hat.
+*/
 bool get_bit(int value, int index ){
     int length = length_for_base(value, 2);
     if (index == -1) {

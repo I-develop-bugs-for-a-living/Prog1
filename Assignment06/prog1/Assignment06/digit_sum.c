@@ -1,32 +1,43 @@
 #include "base.h"
+
+/*Überprüft die Anzahl der Ziffern der Zahl, da bei einer alternierende Quersumme
+wichtig ist ob die Zahl gerade oder ungerade ist. Da die erste Ziffer der alternierenden Quersumme immer positiv sein soll, 
+aber die Funktion digit_sum von hinten anfängt, kann nicht allgemein gesagt werden, dass im zweiten Schritt die Zahl negativ sein soll.*/
+int even_or_uneven (int number) {
+    int times;
+    while(number) {
+        number /= 10;
+        times++;
+    }
+    if (times % 2 == 0){
+        return -1;
+    } else {
+        return 1;
+    }
+}
+
+
 /*bildet die Quersumme oder die alternierende Quersumme*/
 int digit_sum(unsigned number, bool alternating) {
     int sum = 0;
-    int value = 1;
-    String string_of_int = s_of_int(number);
-    //printf("Digit: %s \n", string_of_int);
-    if (alternating) {
-        for(int i = 0; i < s_length(string_of_int); i++) {
-            sum += (s_get(string_of_int, i) - 48) * value;
-            value *= -1;
-            //printiln(sum);
+    int sign = even_or_uneven(number);
+    while (number) {
+        if (alternating) {
+            sum += number % 10 * sign;
+            number /= 10;
+            sign *= -1;
+        } else {
+            sum += number % 10;
+            number /= 10;
         }
-    } else {
-        for(int i = 0; i < s_length(string_of_int); i++) {
-            //printc(s_get(string_of_int, i));
-            sum += s_get(string_of_int, i) - 48;
-            //printiln(sum);
-        }
-    }   
-    //printf("\n");
-    
+    }
     return sum;
 }
 
-bool divisible_by_eleven(unsigned number) {
+/*bool divisible_by_eleven(unsigned number) {
     // OPTIONAL TODO
     return false;
-}
+}*/
 
 
 void digit_sum_test() {
@@ -37,6 +48,9 @@ void digit_sum_test() {
     test_equal_i(digit_sum(3333, true), 0);
     test_equal_i(digit_sum(234, true), 3);
     test_equal_i(digit_sum(3333, false), 12);
+    test_equal_i(digit_sum(463, false), 13);
+    test_equal_i(digit_sum(6497, true), 4);
+    
 
     // OPTIONAL TODO
     // test_equal_i(divisible_by_eleven(12), false);
