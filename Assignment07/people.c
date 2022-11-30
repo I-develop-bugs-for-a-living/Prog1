@@ -41,24 +41,45 @@ Statistics compute_statistics(String table) {
 	int i = 0; //aktuelle Position im String
 	
 	while (s_get(table, i) != '\n') i++; // skip first row
+	i++;
 	
 	// TODO
 	int start = i;
 	int end = 0;
+	String content = "";
+	int diverse = 0;
+	int female = 0;
+	int male = 0;
 	int counter = 1;
-	while (i < 100) {
-		if (s_get(table, i) == '\t') {
+	int year_counter = 0;
+	int year_total = 0;
+	while (i < n) {
+		if (s_get(table, i) == '\t' || s_get(table, i) == '\n') {
 			end = i;
-			printf("%s \n", s_sub(table, start, end));
-			start = end + 1;
+			content = s_sub(table, start, end);
+			//printf("%s \n", s_sub(table, start, end));
 			if (counter % 3 == 1) {
-				printf("");
+				printf("Year: %s \n", content);
+				year_counter++;
+				year_total += i_of_s(content);
+			} else if (counter % 3 == 2) {
+				printf("Gender: %s %d \n", content, counter);
+				if (content == 'f') {
+					female++;
+				} else if (content == "m") {
+					male++;
+				} else {
+					diverse++;
+				}
+			} else {
+				printf("Height: %s \n", s_sub(table, start, end));
 			}
+			start = end + 1;
 			counter++;
 		}
 		i++;
 	}
-	
+	printf("Year_counter: %d, Year_total: %d, Male: %d, Female: %d, Diverse: %d\n", year_counter, year_total, male, female, diverse);
 	return ps;
 }
 
