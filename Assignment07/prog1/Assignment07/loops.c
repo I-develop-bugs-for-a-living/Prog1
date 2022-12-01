@@ -158,19 +158,19 @@ void loops_f(int n) {
 }
 
 int main(void) {
-    // loops_a(5);
-    // loops_b(5);
-    // loops_c(5);
-    // loops_d(5);
-    // loops_a(9);
-    // loops_b(9);
-    // loops_c(9);
-    // loops_d(9);
-    //loops_e(3);
-    //loops_e(4);
-    //loops_e(5);
-    //loops_e(9);
-    //loops_e(12);
+    loops_a(5);
+    loops_b(5);
+    loops_c(5);
+    loops_d(5);
+    loops_a(9);
+    loops_b(9);
+    loops_c(9);
+    loops_d(9);
+    loops_e(3);
+    loops_e(4);
+    loops_e(5);
+    loops_e(9);
+    loops_e(12);
     loops_f(5);
     loops_f(9);
     return 0;
