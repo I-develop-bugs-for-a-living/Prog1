@@ -56,15 +56,14 @@ Statistics compute_statistics(String table) {
 	while (i < n) {
 		if (s_get(table, i) == '\t' || s_get(table, i) == '\n') {
 			end = i;
-			content = s_sub(table, start, end);
-			//printf("%s \n", s_sub(table, start, end));
+			content = s_sub(table, start, end);			
 			if (counter % 3 == 1) {
 				printf("Year: %s \n", content);
 				year_counter++;
 				year_total += i_of_s(content);
 			} else if (counter % 3 == 2) {
 				printf("Gender: %s %d \n", content, counter);
-				if (content == 'f') {
+				if (content == "f") {
 					female++;
 				} else if (content == "m") {
 					male++;
@@ -72,7 +71,7 @@ Statistics compute_statistics(String table) {
 					diverse++;
 				}
 			} else {
-				printf("Height: %s \n", s_sub(table, start, end));
+				printf("Height: %s \n", content);
 			}
 			start = end + 1;
 			counter++;
