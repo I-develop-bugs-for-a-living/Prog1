@@ -53,32 +53,50 @@ Statistics compute_statistics(String table) {
 	int counter = 1;
 	int year_counter = 0;
 	int year_total = 0;
+	double male_height = 0;
+	double female_height = 0;
+	double diverse_height = 0;
+	String last = "male";
 	while (i < n) {
 		if (s_get(table, i) == '\t' || s_get(table, i) == '\n') {
 			end = i;
 			content = s_sub(table, start, end);			
 			if (counter % 3 == 1) {
-				printf("Year: %s \n", content);
 				year_counter++;
 				year_total += i_of_s(content);
+				printf("Year total: %d, Year: %d \n", year_total, i_of_s(content));
 			} else if (counter % 3 == 2) {
-				printf("Gender: %s %d \n", content, counter);
-				if (content == "f") {
+				if (s_compare(content, "f") == EQ) {
+					last = "female";
 					female++;
-				} else if (content == "m") {
+				} else if (s_compare(content, "m") == EQ) {
 					male++;
+					last = "male";
 				} else {
 					diverse++;
+					last = "diverse";
 				}
 			} else {
-				printf("Height: %s \n", content);
+				if (s_compare(last, "male") == EQ) {
+					male_height += d_of_s(content);
+				} else if (s_compare(last, "female") == EQ) {
+					female_height += d_of_s(content);
+				} else {
+					diverse_height += d_of_s(content);
+				}
 			}
 			start = end + 1;
 			counter++;
 		}
 		i++;
 	}
-	printf("Year_counter: %d, Year_total: %d, Male: %d, Female: %d, Diverse: %d\n", year_counter, year_total, male, female, diverse);
+	ps.mean_height_diverse = diverse_height / diverse;
+	ps.mean_height_females = female_height / female;
+	ps.mean_height_males = male_height / male;
+	ps.mean_year = year_total / year_counter;
+	ps.number_diverse = diverse;
+	ps.number_females = female;
+	ps.number_males = male;
 	return ps;
 }
 
@@ -91,7 +109,7 @@ int main(void) {
 	/*
 	Erwartete Ausgabe:
 	
-	mean year: 1996
+	mean year: 1974
 	number males: 488
 	number females: 501
 	number diverse: 11
