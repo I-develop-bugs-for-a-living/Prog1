@@ -69,6 +69,9 @@ Weight to_unit(Weight w, Unit target_unit) {
 void to_unit_test(void) {
     test_within_weight(__LINE__, to_unit(make_weight(1000, G), KG), make_weight(1, KG), 1e-6);
     // todo: add tests (at least 5)
+    test_within_weight(__LINE__, to_unit(make_weight(250, G), KG), make_weight(0.25, KG), 1e-6);
+    test_within_weight(__LINE__, to_unit(make_weight(1000, G), T), make_weight(0.001, T), 1e-6);
+    test_within_weight(__LINE__,)
 }
 
 // Weight, Weight -> int
