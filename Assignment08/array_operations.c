@@ -247,9 +247,9 @@ void test_merge_sorted(){
 }
 
 int main(void) {
-    //test_compare();
-    //test_remove_negatives();
-    //test_intersect();
+    test_compare();
+    test_remove_negatives();
+    test_intersect();
     test_merge_sorted();
 
     return 0;
