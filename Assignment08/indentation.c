@@ -17,32 +17,41 @@ int indentation(char * s) {
 }
 
 char * left_trim(char * s) {
-    require_not_null(s);
-    int num = 0;
-    printf("New string:\n");
-    // todo
-    for (int i = 0; s[i] != '\0'; i++) {
-        printf("%c\n", s[i]);
-        if (s[i] == '\t') {
-            printf("Tab found\n");
-            return -1;
-        } else if (s[i] != ' ') {
-            printf("Not a space\n");
-            for (int j = i; s[j] != '\0'; j++) {
-                printf("Copying %c\n", s[j]);
-                s[num] = s[j];
-                s++;
+    for(; *s != '\0';) {
+        if (*s == ' ') {
+            s++;
+        } else if (*s == '\t') {
+            for (; *s != '\0'; s++) {
             }
             return s;
+        } else {
+            return s;
         }
-        
-    }
+    };
     return s;
 }
 
 char * extract_comment(char * s) {
     require_not_null(s);
     // todo
+    bool slash = false;
+    for (; *s != '\0'; s++) {
+        if (*s == '/') {
+            if (slash == true) {
+                s++;
+                for (; *s != '\0'; s++) {
+                    if (*s == ' ') {
+
+                    } else {
+                        return s;
+                    }
+                }
+            }
+            slash = true;
+        } else if (*s != '/') {
+            slash = false;
+        }
+    }
     return s;
 }
 
@@ -92,8 +101,8 @@ void extract_comment_test(void) {
 }
 
 int main(void) {
-    //indentation_test();
+    indentation_test();
     left_trim_test();
-    //extract_comment_test();
+    extract_comment_test();
     return 0;
 }
