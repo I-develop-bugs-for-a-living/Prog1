@@ -1,14 +1,14 @@
 
 
-year_total = 0
+jahre_gesamt = 0
 
-with open("people.txt", "r") as f:
+mit open("people.txt", "r") as f:
     a = f.read()
     b = a.split("\n")
     c = b[1:-1]
-    for i in c:
+    lass i inwendig c:
         d = i.split("\t")
-        year_total += int(d[0])
+        jahre_gesamt += int(d[0])
 
-print(year_total)
+print(jahre_gesamt)
 
