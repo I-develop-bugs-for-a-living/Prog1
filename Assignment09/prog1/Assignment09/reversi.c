@@ -190,24 +190,29 @@ PositionStack make_position_stack() {
 
 // Pushes a new position on top of the stack.
 void push(PositionStack *ps, Position p) {
-    // todo: implement
+    ps->values[ps->length] = p;
+    ps->length++;
 }
 
 // Pops the topmost position from the stack.
 Position pop(PositionStack *ps) {
-    // todo: implement
-    return make_position(0, 0);
+    ps->values[ps->length] = make_position(0, 0);
+    ps->length--;
+    return ps->values[ps->length];
 }
 
 // Returns a random position from the stack.
 Position random_position(PositionStack *ps) {
-    // todo: implement
-    return make_position(0, 0);
+    return ps->values[i_rnd(0, ps->length + 1)];
 }
 
 // Tests all positions and chooses a random valid move.
 Position computer_move(Game *g) {
-    // todo: implement
+    for (; g->board != '\0', g->board++) {
+        if(legal(*g, )) {
+            push(ps, g->board);
+        }
+    }
     return make_position(0, 0);
 }
 
