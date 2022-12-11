@@ -29,7 +29,7 @@ Prints the converted position as number of row and column.
 @param p is the position
 */
 void print_position(Position p) {
-    printf("(%d, %d)", p.x, p.y);
+    printf("(%d, %d)\n", p.x, p.y);
 }
 
 #define N 8

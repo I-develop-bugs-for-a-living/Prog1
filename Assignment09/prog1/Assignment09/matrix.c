@@ -19,8 +19,14 @@ Creates a zero-initialized matrix of rows and columns matrix.
 @return a pointer to an array of n_rows pointers to rows; a row is an array of n_cols doubles 
 */
 Matrix* make_matrix(int n_rows, int n_cols) {
-    // todo: implement
-    return NULL;
+    Matrix* m = xmalloc(sizeof(Matrix));
+    m->cols = n_cols;
+    m->rows = n_rows;
+    m->data = xcalloc(n_rows, sizeof(double*));
+    for (int i = 0; i < n_rows; i++) {
+        m->data[i] = xcalloc(n_cols, sizeof(double));
+    }
+    return m;
 }
 
 /**
@@ -31,8 +37,14 @@ Creates a zero-initialized matrix of rows and columns matrix.
 @return a pointer to an array of n_rows pointers to rows; a row is an array of n_cols doubles 
 */
 Matrix* copy_matrix(double* data, int n_rows, int n_cols) {
-    // todo: implement
-    return NULL;
+    Matrix* s = make_matrix(n_rows, n_cols);
+    for (int i = 0; i < n_rows; i++) {
+        for (int j = 0; j < n_cols; j++) {
+            s->data[i][j] = *data;
+            data++;
+        }   
+    }
+    return s;
 }
 
 /**
@@ -40,7 +52,13 @@ Print a matrix.
 @param[in] m the matrix to print
 */
 void print_matrix(Matrix* m) {
-    // todo: implement
+    for (int i = 0; i < m->rows; i++) {
+        for (int j = 0; j < m->cols; j++) {
+            printf("%.2f ", m->data[i][j]);
+        }
+        printf("\n");
+    }     
+printf("\n\n");
 }
 
 /**
@@ -50,8 +68,13 @@ Add two matrices.
 @return a new matrix whose elements are the element-wise sums of a and b
 */
 Matrix* add_matrices(/*in*/ Matrix* a, /*in*/ Matrix* b) {
-    // todo: implement
-    return NULL;
+    Matrix* m = make_matrix(a->rows, a->cols);
+    for (int i = 0; i < m->rows; i++) {
+        for (int j = 0; j < m->cols; j++) {
+            m->data[i][j] = a->data[i][j] + b->data[i][j];
+        }
+    } 
+    return m;
 }
 
 /**
@@ -59,7 +82,11 @@ Free a matrix.
 @param[in] m the matrix to free
 */
 void free_matrix(Matrix* m) {
-    // todo: implement
+    for (int i = 0; i < m->rows; i++) {
+        free(m->data[i]);
+    }
+    free(m->data);
+    free(m);
 }
 
 void matrix_test(void) {
@@ -102,7 +129,7 @@ void matrix_test(void) {
 
 int main(void) {
     base_init();
-    base_set_memory_check(true);
+    // base_set_memory_check(true);
+    report_memory_leaks(true);
     matrix_test();
-    return 0;
 }
