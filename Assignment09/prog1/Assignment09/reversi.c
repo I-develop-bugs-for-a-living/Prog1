@@ -203,17 +203,25 @@ Position pop(PositionStack *ps) {
 
 // Returns a random position from the stack.
 Position random_position(PositionStack *ps) {
-    return ps->values[i_rnd(0, ps->length + 1)];
+    return ps->values[i_rnd((ps->length))];
 }
 
 // Tests all positions and chooses a random valid move.
 Position computer_move(Game *g) {
-    for (; g->board != '\0', g->board++) {
-        if(legal(*g, )) {
-            push(ps, g->board);
+    PositionStack stack = make_position_stack();
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (legal(g, i, j)) {
+                push(&stack, make_position(i,j));
+            }
         }
     }
-    return make_position(0, 0);
+    printf("Position stack: \n");
+    for(int i = 0; i < stack.length; i++) {
+        printf("Position in Stack: %d\n", i);
+        print_position(stack.values[i]);
+    }
+    return random_position(&stack);
 }
 
 int main(void) {
