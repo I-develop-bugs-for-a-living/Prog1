@@ -29,7 +29,9 @@ Prints the converted position as number of row and column.
 @param p is the position
 */
 void print_position(Position p) {
-    printf("(%d, %d)\n", p.x, p.y);
+    char cols[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    char rows[] = {'1', '2', '3', '4', '5', '6', '7', '8'};
+    printf("(%c, %c)\n", cols[p.x], rows[p.y]);
 }
 
 #define N 8
@@ -216,12 +218,16 @@ Position computer_move(Game *g) {
             }
         }
     }
-    printf("Position stack: \n");
-    for(int i = 0; i < stack.length; i++) {
-        printf("Position in Stack: %d\n", i);
-        print_position(stack.values[i]);
+    if(stack.length == 0) {
+        return make_position(-1, -1);
+    } else {
+        return random_position(&stack);        
     }
-    return random_position(&stack);
+    // printf("Position stack: \n");
+    // for(int i = 0; i < stack.length; i++) {
+    //     printf("Position in Stack: %d\n", i);
+    //     print_position(stack.values[i]);
+    // }
 }
 
 int main(void) {
