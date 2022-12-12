@@ -146,17 +146,20 @@ void reverse(Game* g, int x, int y) {
     reverse_dir(g, x, y, 0, 1); reverse_dir(g, x, y, 1, 1);
 }
 
+
 // Input a position of the form D6 or d6, i.e., giving the column first and 
 // then the row. A1 corresponds to position (0,0). B1 corresponds to (1,0).
 Position human_move(Game* g) {
     String s = s_input(10);
     if (s_length(s) >= 1 && s[0] == 'q') exit(0);
-    // todo: modify to temporarily mark valid moves
     Position pos = { -1, -1 };
     if (s_length(s) >= 2) {
         pos.x = (int)tolower(s[0]) - 'a';
         pos.y = (int)s[1] - '1';
     }
+    // if(s == '?') {
+
+    // }
     if (legal(g, pos.x, pos.y)) {
         return pos;
     } else {
@@ -208,9 +211,7 @@ Position random_position(PositionStack *ps) {
     return ps->values[i_rnd((ps->length))];
 }
 
-// Tests all positions and chooses a random valid move.
-Position computer_move(Game *g) {
-    PositionStack stack = make_position_stack();
+PositionStack valid_positions_stack(Game *g, PositionStack stack) {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             if (legal(g, i, j)) {
@@ -218,17 +219,27 @@ Position computer_move(Game *g) {
             }
         }
     }
+    return stack;
+}
+
+
+// Tests all positions and chooses a random valid move.
+Position computer_move(Game *g) {
+    PositionStack stack = make_position_stack();
+    stack = valid_positions_stack(g, stack);
+    printf("Position stack: \n");
+    for(int i = 0; i < stack.length; i++) {
+        printf("Position in Stack: %d\n", i);
+        print_position(stack.values[i]);
+    }
     if(stack.length == 0) {
         return make_position(-1, -1);
     } else {
         return random_position(&stack);        
     }
-    // printf("Position stack: \n");
-    // for(int i = 0; i < stack.length; i++) {
-    //     printf("Position in Stack: %d\n", i);
-    //     print_position(stack.values[i]);
-    // }
 }
+
+
 
 int main(void) {
     Game g = init_game('X');
