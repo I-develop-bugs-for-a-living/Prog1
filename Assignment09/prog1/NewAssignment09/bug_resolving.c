@@ -170,7 +170,7 @@ int main(int argc, String argv[]) {
 	printf("Your fleet: \n");
 	print_spacecrafts(fleet);
 	
-	while((c = getchar()) != 'p'){
+	while((c = getchar()) != 'q'){
 		if (c == 's'){
 			//send out a ship, remove it from the fleet
 			//example: s1

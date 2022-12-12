@@ -27,7 +27,8 @@ Position make_position(int x, int y) {
 
 void print_position(Position p) {
     // todo: implement
-    printf("%c %d", p->x);
+    char rows = 'A' + p.x;
+    printf("%c %d \n", rows, p.y);
 }
 
 #define N 8
@@ -142,11 +143,42 @@ void reverse(Game* g, int x, int y) {
     reverse_dir(g, x, y, 0, 1); reverse_dir(g, x, y, 1, 1);
 }
 
+void marker(Game *g, int i, int j) {
+    g->board[i][j] = '*';
+}
+
+void mark_legal_moves(Game* g) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (legal(g, i, j)) {
+                marker(g, i, j);
+            }
+        } 
+    }
+}
+
+void unmark(Game *g) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (g->board[i][j] == '*') {
+                g->board[i][j] = '_';
+            }
+        }
+    }
+}
+
 // Input a position of the form D6 or d6, i.e., giving the column first and 
 // then the row. A1 corresponds to position (0,0). B1 corresponds to (1,0).
 Position human_move(Game* g) {
     String s = s_input(10);
     if (s_length(s) >= 1 && s[0] == 'q') exit(0);
+    if (s[0] == '?') {
+        printf("Detected ?\n");
+        mark_legal_moves(g);
+        print_board(g);
+        unmark(g);
+        return human_move(g);
+    }
     // todo: modify to temporarily mark valid moves
     Position pos = { -1, -1 };
     if (s_length(s) >= 2) {
@@ -189,24 +221,46 @@ PositionStack make_position_stack() {
 // Pushes a new position on top of the stack.
 void push(PositionStack *ps, Position p) {
     // todo: implement
+    if (ps->length + 1 > 64) {
+        exit;
+    }
+    ps->values[ps->length] = p;
+    ps->length++;
 }
 
 // Pops the topmost position from the stack.
 Position pop(PositionStack *ps) {
     // todo: implement
-    return make_position(0, 0);
+    if (ps->length - 2 < 0) {
+        printf("out of moves\n");
+        exit;
+    }
+    ps->length--;
+    Position a = ps->values[ps->length];
+    return a;
 }
 
 // Returns a random position from the stack.
 Position random_position(PositionStack *ps) {
     // todo: implement
-    return make_position(0, 0);
+    int a = i_rnd(ps->length-1);
+    return ps->values[a];
 }
 
 // Tests all positions and chooses a random valid move.
 Position computer_move(Game *g) {
     // todo: implement
-    return make_position(0, 0);
+    PositionStack ps = make_position_stack();
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (legal(g, i, j)) {
+                Position p = make_position(i, j);
+                push(&ps, p);
+            }
+        }
+    }
+    Position p = random_position(&ps);
+    return p;
 }
 
 int main(void) {
