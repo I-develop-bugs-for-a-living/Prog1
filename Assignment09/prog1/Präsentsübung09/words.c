@@ -42,13 +42,17 @@ typedef struct {
 Word first_word(char* s) {
     require_not_null(s);
     // todo: implement using the above functions
-    Word w = { s, s };
+    char* j = find_word_start(s);
+    char* k = find_word_end(j);
+    Word w = { j, k };
     return w;
 }
 
 // Returns the next word after w. May be empty.
 Word next_word(Word w) {
     // todo: implement using the above functions
+    w.start = find_word_start(w.end);
+    w.end = find_word_end(w.start);
     return w;
 }
 
@@ -69,9 +73,11 @@ int count_words(char* s) {
     int n = 0;
     for (Word w = first_word(s); !is_empty_word(w); w = next_word(w)) {
         // todo: implement
+        n++;
     }
     return n;
 }
+
 
 // Gets an array of words and the length (number of elements) of the array.
 Word* get_words(/*in*/char* s, /*out*/int* n) {
@@ -80,6 +86,7 @@ Word* get_words(/*in*/char* s, /*out*/int* n) {
     // todo: implement
     return NULL;
 }
+
 
 // Gets an array of words and the length (number of elements) of the array.
 void get_words2(/*in*/char* s, /*out*/Word** words, /*out*/int* n) {
