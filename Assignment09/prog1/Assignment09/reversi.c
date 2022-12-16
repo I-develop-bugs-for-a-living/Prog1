@@ -146,10 +146,47 @@ void reverse(Game* g, int x, int y) {
     reverse_dir(g, x, y, 0, 1); reverse_dir(g, x, y, 1, 1);
 }
 
+#define POSITION_STACK_SIZE 64
+typedef struct {
+    int length;
+    Position values[POSITION_STACK_SIZE];
+} PositionStack;
+
+// Initializes a position stack.
+PositionStack make_position_stack() {
+    PositionStack ps;
+    ps.length = 0;
+    return ps;
+}
+
+
+void valid_positions_stack(Game *g, PositionStack *stack) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (legal(g, i, j)) {
+                push(stack, make_position(i,j));
+            }
+        }
+    }
+}
+
+void print_help(Game *g) {
+    PositionStack stack = make_position_stack();
+    valid_positions_stack(g, &stack);
+    for(int i = 0; i < stack.length; i++) {
+        g->board[stack.values[i].x][stack.values[i].y] = '*';
+    }
+    print_board(g);
+    for(int i = 0; i < stack.length; i++) {
+        g->board[stack.values[i].x][stack.values[i].y] = '_';
+    }
+    
+}
 
 // Input a position of the form D6 or d6, i.e., giving the column first and 
 // then the row. A1 corresponds to position (0,0). B1 corresponds to (1,0).
 Position human_move(Game* g) {
+    printf("%c's move: ", my_stone(g));
     String s = s_input(10);
     if (s_length(s) >= 1 && s[0] == 'q') exit(0);
     Position pos = { -1, -1 };
@@ -157,9 +194,10 @@ Position human_move(Game* g) {
         pos.x = (int)tolower(s[0]) - 'a';
         pos.y = (int)s[1] - '1';
     }
-    // if(s == '?') {
-
-    // }
+    if(s[0] == '?') {
+        print_help(g);
+        return human_move(g);
+    }
     if (legal(g, pos.x, pos.y)) {
         return pos;
     } else {
@@ -180,18 +218,6 @@ int count_stones(Game *g, char c) {
     return result;
 }
 
-#define POSITION_STACK_SIZE 64
-typedef struct {
-    int length;
-    Position values[POSITION_STACK_SIZE];
-} PositionStack;
-
-// Initializes a position stack.
-PositionStack make_position_stack() {
-    PositionStack ps;
-    ps.length = 0;
-    return ps;
-}
 
 // Pushes a new position on top of the stack.
 void push(PositionStack *ps, Position p) {
@@ -211,27 +237,11 @@ Position random_position(PositionStack *ps) {
     return ps->values[i_rnd((ps->length))];
 }
 
-PositionStack valid_positions_stack(Game *g, PositionStack stack) {
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            if (legal(g, i, j)) {
-                push(&stack, make_position(i,j));
-            }
-        }
-    }
-    return stack;
-}
-
 
 // Tests all positions and chooses a random valid move.
 Position computer_move(Game *g) {
     PositionStack stack = make_position_stack();
-    stack = valid_positions_stack(g, stack);
-    printf("Position stack: \n");
-    for(int i = 0; i < stack.length; i++) {
-        printf("Position in Stack: %d\n", i);
-        print_position(stack.values[i]);
-    }
+    valid_positions_stack(g, &stack);
     if(stack.length == 0) {
         return make_position(-1, -1);
     } else {
@@ -245,7 +255,6 @@ int main(void) {
     Game g = init_game('X');
     print_board(&g);
     while (true) {
-        printf("%c's move: ", my_stone(&g));
         Position pos = human_move(&g);
         reverse(&g, pos.x, pos.y);
         print_board(&g);
