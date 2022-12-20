@@ -43,8 +43,12 @@ void println_list(Node* list) {
 
 // Free all nodes of the list, including the values it contains.
 void free_list(Node* list) {
-    // todo: implement (Aufgabe 1)
-    // (there will be memory leaks if this function is not yet implemented)
+    while (list != NULL) {
+        Node* list_next = list->next;
+        free(list->value);
+        free(list);
+        list = list_next;
+    } 
 }
 
 
@@ -98,16 +102,21 @@ void test_equal_lists_test(void) {
 
 // Checking whether two string lists are equal.
 bool test_equal_lists(int line, Node* list1, Node* list2) {
-    // todo: implement (Aufgabe 1)
-    return false;
+    while (list1 != NULL && list2 != NULL) {
+        if(!s_equals(list1->value, list2->value)){
+            printf("\n");
+        }
+        list1 = list1->next;
+        list2 = list2->next;
+    return true;
 }
+
 
 int length_list(Node* list);
 
 // Example calls for length_list (below).
 void length_list_test(void) {
-    // todo: implement (Aufgabe 1)
-    // todo: at least 3 checks, with test_equal_i(actual, expected);
+    test_equal_i(length_list(list1), length_list(list2));
 }
 
 // Number of elements of the list.
