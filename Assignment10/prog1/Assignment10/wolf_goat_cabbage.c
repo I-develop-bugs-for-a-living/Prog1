@@ -144,6 +144,7 @@ bool test_equal_lists(int line, Node* list1, Node* list2) {
     return false;
 }
 
+
 int length_list(Node* list);
 
 // Example calls for length_list (below).
