@@ -50,23 +50,48 @@ Node* new_node(char* name) {
 
 Node* new_file(char* name) {
     // todo: implement (a)
-    return NULL;
+    Node* file = new_node(name);
+    file->type = NT_FILE;
+    return file;
 }
 
 Node* new_directory(char* name) {
     // todo: implement (a)
-    return NULL;
+    Node* directory = new_node(name);
+    directory->type = NT_DIR;
+    directory->dir.entries = NULL;
+    return directory;
 }
 
 // Inserts a new node into a directory.
 // Ensures that the list of nodes remains sorted by their names.
 void insert_into_directory(Node* directory, Node* new_node) {
-    return; // todo: remove
+    // return; // todo: remove
     require_not_null(directory);
     require_not_null(new_node);
     require("target is a directory", directory->type == NT_DIR);
     require("name not empty", *new_node->name != '\0');
     // todo: implement (b)
+    //printf("H: %s\n", directory->dir.entries->node->name);
+    if (directory->dir.entries == NULL) {
+        directory->dir.entries = new_entry(new_node, NULL);
+        return;
+    }
+    Entry* entry = directory->dir.entries;
+    Entry* prev = NULL;
+    while (entry != NULL) {
+        if (strcmp(entry->node->name, new_node->name) > 0) {
+            if (prev == NULL) {
+                directory->dir.entries = new_entry(new_node, entry);
+            } else {
+                prev->next = new_entry(new_node, entry);
+            }
+            return;
+        }
+        prev = entry;
+        entry = entry->next;
+    }
+    prev->next = new_entry(new_node, NULL);
 }
 
 // Recursively prints the files and directories in a node.
@@ -192,6 +217,7 @@ int main(void) {
     insert_into_directory(root, test_file);
     insert_into_directory(root, new_file("hello.c"));
     insert_into_directory(root, new_file("world.c"));
+    print_node(root, "");
 
     Node* home = new_directory("home");
 
@@ -222,6 +248,7 @@ int main(void) {
 
     insert_into_directory(root, new_file("archive.a"));
 
+    printf("Hello\n");
     // output the filesystem's contents
     print_node(root, "");
 

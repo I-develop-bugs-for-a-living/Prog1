@@ -123,6 +123,9 @@ bool legal_dir(Game* g, int x, int y, int dx, int dy) {
         //printf("First criteria\n");
         for (int i = 2; !out_of_bounds(x + dx * i, y + dy * i); i++) {
             //printf("New Symbol: %c \n", g->board[x + dx * i][y + dy * i]);
+            if (g->board[x + dx * i][y + dy * i] == '_') {
+                return false;
+            }
             if (g->board[x + dx * i][y + dy * i] == g->my_stone) {
                 return true;
             }
