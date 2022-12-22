@@ -252,11 +252,9 @@ Node* remove_list(Node* list, int index) {
     ensure("Index not negativ", index >= 0);
     Node* list2 = list;
     if (index == 0 && length == 0) {
-        printf("In the function\n");
         list = NULL;
         free(list2->value);
         free(list2);
-        printf("Here I am\n");
     } else if (index == 0) {
         list = list->next;
         free(list2->value);

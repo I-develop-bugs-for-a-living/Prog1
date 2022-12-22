@@ -52,6 +52,8 @@ Node* new_file(char* name) {
     // todo: implement (a)
     Node* file = new_node(name);
     file->type = NT_FILE;
+    file->file.contents = '\0';
+    file->file.length = 0;
     return file;
 }
 
@@ -121,6 +123,22 @@ void print_node(Node* node, char* prefix) {
 // Recursively frees the node.
 void free_node(Node* node) {
     // todo: implement (c)
+    if (node == NULL) return;
+    if (node->type == NT_DIR) {
+        Entry* entry = node->dir.entries;
+        while (entry != NULL) {
+            Entry* next = entry->next;
+            printf("Free: %s\n", entry->node->name);
+            free_node(entry->node);
+            free(entry);
+            entry = next;
+        }
+        free(node->name);
+    } else {
+        printf("Free: %s\n", node->name);
+        free(node->file.contents);
+        free(node);
+    }
 }
 
 // Tries to find a node in the entries of a directory.
@@ -151,6 +169,7 @@ Node* find_entry_n(Node* directory, char* name, int n) {
 // Tries to find a node that corresponds to the given path, starting at the
 // given root node.
 Node* find_node(Node* root, char* path) {
+    //printf("Begin: %s\n", path);
     if (root == NULL) return NULL;
     require_not_null(path);
     // skip slashes at front
@@ -161,19 +180,30 @@ Node* find_node(Node* root, char* path) {
     char* slash = strchr(path, '/');
     if (slash == NULL) {
         // todo: implement (d)
-        return NULL;
+        //printf("NULL: %s\n", path);
+        if (root->type == NT_FILE) return NULL;
+        return find_entry(root, path);
     } else {
         // todo: implement (d)
-        return NULL;
+        //printf("NOT NULL: %s\n", slash);
+        int length = slash - path;
+
+        Node* a = find_entry_n(root, path, length);
+        if (a == NULL) return NULL;
+        if (a->type == NT_FILE) return NULL;
+        //printf("%s\n", a->name);
+        find_node(a, slash);
     }
 }
 
 // Appends length bytes from buffer to file. Returns true iff the data could
 // actually be written.
 bool write_file(Node* file, void* buffer, int length) {
+    printf("I am at the beginning of write_file\n");
     if (file == NULL || buffer == NULL || length <= 0) return true;
     if (file->type != NT_FILE) return false;
     int old_length = file->file.length;
+    printf("Old length %d\n", old_length);
     int new_length = old_length + length;
     char* p = xmalloc(new_length);
     if (old_length > 0) {
@@ -207,7 +237,7 @@ int file_length(Node* file) {
 }
 
 int main(void) {
-    // report_memory_leaks(true); // (e)
+    report_memory_leaks(true); // (e)
 
     // create a filesystem
     Node* root = new_directory("");
@@ -217,7 +247,6 @@ int main(void) {
     insert_into_directory(root, test_file);
     insert_into_directory(root, new_file("hello.c"));
     insert_into_directory(root, new_file("world.c"));
-    print_node(root, "");
 
     Node* home = new_directory("home");
 
@@ -248,9 +277,8 @@ int main(void) {
 
     insert_into_directory(root, new_file("archive.a"));
 
-    printf("Hello\n");
     // output the filesystem's contents
-    print_node(root, "");
+    //print_node(root, "");
 
     // make sure we can extract the contained nodes again
     test_equal_b(find_node(root, "") == root, true);
@@ -280,7 +308,7 @@ int main(void) {
     test_equal_b(find_node(root, "/also/does/not/exist") == NULL, true);
     test_equal_b(find_node(root, "/world.c/invalid") == NULL, true);
 
-    // test writing to and reading from files
+    //test writing to and reading from files
     test_equal_b(write_file(test_file, "hello", 5), true);
     char buffer[64] = {0}; // zero-initialized buffer
     test_equal_i(read_file(test_file, buffer, 64), 5);

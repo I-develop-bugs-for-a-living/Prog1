@@ -1,6 +1,6 @@
 CC = gcc
 LINKER = gcc
-CFLAGS = -std=c99 -Wall -Wpointer-arith -Wfatal-errors -lm
+CFLAGS = -std=c99 -Wall -Wpointer-arith -Wfatal-errors -lm -fsanitize=address 
 DEBUG = -g
 MATH = -lm
 PROG1LIBNAME = prog1
