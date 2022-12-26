@@ -7,11 +7,12 @@ typedef struct Node {
 } Node;
 
 
-
-Node* new_list(void) {
-    return xcalloc(1, sizeof(Node));
-}
-
+/*
+Creates a new node with a parentheses saved.
+@param parentheses The parentheses which are save in the node.
+@param next A pointer to the next node of the list.
+@return A pointer to the new node.
+*/
 Node* new_node(char parentheses, Node* next) {
     Node* node = xcalloc(1, sizeof(Node));
     node->parentheses = parentheses;
@@ -19,6 +20,10 @@ Node* new_node(char parentheses, Node* next) {
     return node;
 }
 
+/*
+Frees the allocated memory of the stack
+@param stack that should get freed
+*/
 void free_list(Node* List) {
     struct Node *tmp;
     while(List != NULL) {
@@ -28,20 +33,28 @@ void free_list(Node* List) {
     }
 }
 
-
+/*
+Pushes a new node to the top of the stack.
+@param stack the old stack
+@return The new stack
+*/
 Node* prepend_list(char parentheses, Node* List) {
     return new_node(parentheses, List);
 }
 
-
+/*
+Pops the top entry of the stack.
+@param stack the old stack
+@return The new stack
+*/
 Node* remove_first_of_list(Node* stack){
     if(stack == NULL) return NULL;
     Node *tmp;
     tmp = stack;
+    stack = stack->next;
     free(tmp);
-    return stack->next;
+    return stack;
 }
-
 
 /*
 Checks if the given String has correct parentheses. ( ), [ ], { }, < >
@@ -53,78 +66,33 @@ If this is the case the parentheses gets pop of the stack and the program contin
 */
 bool verify_parentheses(String text) {
     // TODO
+    String opening_parentheses = "([{<";
+    String closing_parentheses = ")]}>";
     Node* stack = NULL;
     for (int i = 0; text[i] != '\0'; i++) {
-        printf("Index: %d\n", i+1);
-        printf("Der zu überprüfende Character: %c\n",text[i]);
-        if(text[i] == '(') {
-            printf("Als Klammer erkannt.\n");
-            stack = prepend_list(text[i], stack);
-            printf("Oberstes Stack Element: %c\n", stack->parentheses);
-        }
-        if(text[i] == '[') {
-            printf("Als Klammer erkannt.\n");
-            stack = prepend_list(text[i], stack);
-            printf("Oberstes Stack Element: %c\n", stack->parentheses);
-        }
-        if(text[i] == '{') {
-            printf("Als Klammer erkannt.\n");
-            stack = prepend_list(text[i], stack);
-            printf("Oberstes Stack Element: %c\n", stack->parentheses);
-        }
-        if(text[i] == '<') {
-            printf("Als Klammer erkannt.\n");
-            stack = prepend_list(text[i], stack);
-            printf("Oberstes Stack Element: %c\n", stack->parentheses);
-        }
-        if(text[i] == ')') {
-            if (stack->parentheses == '(') {
-                printf("Matching parentheses: ( ) \n->Removing from stack\n");
-                stack = remove_first_of_list(stack);
-                printf("Neues oberstes Element: %c\n", stack->parentheses);
-            } else {
-                printf("No matching parentheses found\n Stack contains: %c\n -> clearing stack\n", stack->parentheses);
-                free_list(stack);
-                return false;
+        for (int j = 0; opening_parentheses[j] != '\0'; j++) {
+            if(text[i] == opening_parentheses[j]) {
+                stack = prepend_list(text[i], stack);
             }
         }
-        if(text[i] == ']') {
-            if (stack->parentheses == '[') {
-                printf("Matchting parentheses: [ ]\n->Removing from stack\n");
-                stack = remove_first_of_list(stack);
-                printf("Neues oberstes Element: %c\n", stack->parentheses);
-            } else {
-                printf("No matching parentheses found\n Stack contains: %c\n -> clearing stack\n", stack->parentheses);
-                free_list(stack);
-                return false;
+        for (int j = 0; closing_parentheses[j] != '\0'; j++) {
+            if(text[i] == closing_parentheses[j]) {
+                if (stack->parentheses == opening_parentheses[j]) {
+                    stack = remove_first_of_list(stack);
+                } else {
+                    free_list(stack);
+                    return false;
+                }
             }
         }
-        if(text[i] == '}') {
-            if (stack->parentheses == '{') {
-                printf("Matchting parentheses: { } \n->Removing from stack\n");
-                stack = remove_first_of_list(stack);
-                printf("Neues oberstes Element: %c\n", stack->parentheses);
-            } else {
-                printf("No matching parentheses found\n Stack contains: %c\n -> clearing stack\n", stack->parentheses);
-                free_list(stack);
-                return false;
-            }
-        }    
-        if(text[i] == '>') {
-            if (stack->parentheses == '<') {
-                printf("Matchting parentheses: <> \n->Removing from stack\n");
-                stack = remove_first_of_list(stack);
-                printf("Neues oberstes Element: %c\n", stack->parentheses);
-            } else {
-                printf("No matching parentheses found\n Stack contains: %c\n -> clearing stack\n", stack->parentheses);
-                free_list(stack);
-                return false;
-            }
-            
-        }
+    }    
+    if (stack != NULL) {
+        free_list(stack);
+        return false;
+    } else {
+        free_list(stack);
+        return true;
     }
-    free_list(stack);
-    return true;
 }
 
 int main(void) {
